@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:jmaker_fablab/Views/loginPage.dart';
 import 'package:jmaker_fablab/styles/buttons.dart';
 import 'package:jmaker_fablab/styles/text_style.dart';
 import '../styles/color.dart';
@@ -23,7 +24,7 @@ class LandingPage extends StatelessWidget {
             Expanded(
               flex: 1,
               child: Padding(
-                padding: EdgeInsets.fromLTRB(16.0, 0, 16, 16),
+                padding: EdgeInsets.fromLTRB(16.0, 16, 16, 16),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -64,7 +65,12 @@ class LandingPage extends StatelessWidget {
                   padding: const EdgeInsets.fromLTRB(16,0,8,16),
                   child: ElevatedButton(
                       style: yellowPrimary,
-                      onPressed: (){}, //attach navigation
+                      onPressed: (){
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => AccountType()),
+                        );
+                      }, //attach navigation
                       child: Text('Sign Up',
                       style: CustomTextStyle.primaryBlack,
                       ),
@@ -77,7 +83,7 @@ class LandingPage extends StatelessWidget {
                       onPressed: (){
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => AccountType()),
+                          MaterialPageRoute(builder: (context) => loginPage()),
                         );
                       }, //attach navigation
                       child: Text('Log In',

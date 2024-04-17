@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jmaker_fablab/Views/account_type.dart';
+import 'package:jmaker_fablab/Views/loginPage.dart';
 import 'package:jmaker_fablab/styles/text_style.dart';
 import '../styles/buttons.dart';
 import '../styles/color.dart';
@@ -116,7 +117,7 @@ class _StudentQRState extends State<StudentQR> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => AccountType()),
+                      MaterialPageRoute(builder: (context) => loginPage()),
                     );
                   }, //attach navigation
                   child: Text(
