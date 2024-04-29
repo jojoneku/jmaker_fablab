@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jmaker_fablab/Views/dashboard.dart';
 import 'package:jmaker_fablab/Views/landingPage.dart';
 import 'package:jmaker_fablab/styles/formStyles.dart';
 import 'package:jmaker_fablab/styles/text_style.dart';
@@ -85,7 +86,12 @@ class loginPage extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(16, 0, 8, 16),
               child: ElevatedButton(
                 style: longYellow,
-                onPressed: () {}, //attach navigation to dashboard
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => DashBoard()),
+                  );
+                }, //attach navigation to dashboard
                 child: Text(
                   'Log-In.',
                   style: CustomTextStyle.primaryBlack,

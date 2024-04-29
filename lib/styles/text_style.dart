@@ -24,4 +24,11 @@ class CustomTextStyle {
     color: blackGreen,
   );
 
+  static TextStyle bigTitle = TextStyle(
+    fontFamily: 'Nunito',
+    fontSize: 24.0,
+    fontWeight: FontWeight.w700,
+    color: blackGreen,
+  );
+
 }
