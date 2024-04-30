@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:jmaker_fablab/Views/dashboard.dart';
 import 'package:jmaker_fablab/Views/landingPage.dart';
 import 'package:jmaker_fablab/styles/formStyles.dart';
 import 'package:jmaker_fablab/styles/text_style.dart';
 import '../styles/buttons.dart';
-
 import '../styles/color.dart';
+import 'navigationPage.dart';
 
 class loginPage extends StatelessWidget {
   const loginPage({super.key});
@@ -89,7 +88,7 @@ class loginPage extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => DashBoard()),
+                    MaterialPageRoute(builder: (context) => BottomNavBarPage()),
                   );
                 }, //attach navigation to dashboard
                 child: Text(
