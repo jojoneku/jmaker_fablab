@@ -12,7 +12,10 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(fontFamily: 'Nunito'),
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        fontFamily: 'Nunito',
+        visualDensity: VisualDensity.adaptivePlatformDensity,),
       home: LandingPage(),
     );
   }

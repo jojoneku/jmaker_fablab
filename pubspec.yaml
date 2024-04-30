@@ -16,6 +16,10 @@ dependencies:
   mvc_pattern: ^8.0.0
   animated_icon: ^0.0.9
   ionicons: ^0.2.2
+  dot_navigation_bar:
+  salomon_bottom_bar: ^3.3.2
+  uicons: ^1.0.1
+  iconify_flutter: ^0.0.5
 
 dev_dependencies:
   flutter_test:
