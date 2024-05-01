@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jmaker_fablab/Views/Machines/GCCLaserMachine.dart';
 import 'package:jmaker_fablab/Views/Machines/PrintCutMachine.dart';
-import 'package:jmaker_fablab/Views/Machines/ULSLaserMachine.dart';
 import 'package:jmaker_fablab/Views/Machines/VinylCutterMachine.dart';
 import 'package:jmaker_fablab/styles/text_style.dart';
 import 'package:jmaker_fablab/styles/color.dart';
