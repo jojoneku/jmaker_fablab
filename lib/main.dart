@@ -21,7 +21,10 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      theme: ThemeData(fontFamily: 'Nunito'),
+      theme: ThemeData(
+        fontFamily: 'Nunito',
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
       routerConfig: _appRouter.config(),
     );
   }
