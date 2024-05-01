@@ -10,6 +10,13 @@ class CustomTextStyle {
     color: blackGreen,
   );
 
+  static TextStyle biggerBlack = TextStyle(
+    fontFamily: 'Nunito',
+    fontSize: 16.0,
+    fontWeight: FontWeight.w400,
+    color: blackGreen,
+  );
+
   static TextStyle secondaryGrey = TextStyle(
     fontFamily: 'Nunito',
     fontSize: 12.0,
@@ -31,4 +38,10 @@ class CustomTextStyle {
     color: blackGreen,
   );
 
+  static TextStyle bigTitleYellow = TextStyle(
+    fontFamily: 'Nunito',
+    fontSize: 24.0,
+    fontWeight: FontWeight.w700,
+    color: mainYellow,
+  );
 }

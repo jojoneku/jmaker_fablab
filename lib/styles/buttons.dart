@@ -3,6 +3,7 @@ import 'package:jmaker_fablab/styles/color.dart';
 import 'text_style.dart';
 
 
+
 final ButtonStyle yellowPrimary = ElevatedButton.styleFrom(
 minimumSize: const Size(172, 48),
   backgroundColor: mainYellow,
@@ -71,6 +72,65 @@ class dashboardButton extends StatelessWidget {
 
           ),
         ),
+      ),
+    );
+  }
+}
+
+final ButtonStyle manualsButton = ElevatedButton.styleFrom(
+  minimumSize: const Size(double.infinity, 80),
+  backgroundColor: mainYellow,
+  elevation: 1,
+  shape: RoundedRectangleBorder(
+    borderRadius: BorderRadius.circular(10), // Adjust the radius as needed
+  ),
+);
+
+ // Import your custom text styles
+class MachineButton extends StatelessWidget {
+  final IconData icon;
+  final String title;
+  final String subtitle;
+  final VoidCallback onPressed;
+
+  const MachineButton({
+    required this.icon,
+    required this.title,
+    required this.subtitle,
+    required this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: onPressed,
+      style: ElevatedButton.styleFrom(
+        minimumSize: const Size(double.infinity, 80),
+        backgroundColor: mainYellow,
+        elevation: 1,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+      ),
+      child: Row(
+        children: [
+          Icon(icon, size: 40, color: blackGreen), // Use the provided icon
+          SizedBox(width: 16),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                title,
+                style: CustomTextStyle.biggerBlack, // Apply your custom text style
+              ),
+              Text(
+                subtitle,
+                style: CustomTextStyle.secondaryGrey, // Apply your custom text style
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

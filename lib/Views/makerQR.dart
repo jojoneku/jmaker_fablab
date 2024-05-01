@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jmaker_fablab/Views/account_type.dart';
+
 import 'package:jmaker_fablab/Views/loginPage.dart';
 import 'package:jmaker_fablab/styles/text_style.dart';
 import '../styles/buttons.dart';
