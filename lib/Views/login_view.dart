@@ -108,13 +108,11 @@ class _LoginViewState extends State<LoginView> {
                 style: longYellow,
                 onPressed: () async {
                   setState(() => isLoading = true);
-
                   await AuthController().signIn(
                     context,
                     email: _universityEmailController.text,
                     password: _passwordController.text,
                   );
-
                   setState(() => isLoading = false);
                 }, //attach navigation to dashboard
                 child: isLoading

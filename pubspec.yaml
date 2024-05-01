@@ -24,7 +24,7 @@ dependencies:
   freezed: ^2.5.2
   freezed_annotation: ^2.4.1
   qr_flutter: ^4.1.0
-  dot_navigation_bar:
+  dot_navigation_bar: null
   salomon_bottom_bar: ^3.3.2
   uicons: ^1.0.1
   iconify_flutter: ^0.0.5
