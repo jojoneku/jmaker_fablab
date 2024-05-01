@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import '../styles/botnavbarwidget.dart';
-import 'dashboard.dart'; // Import your other pages here
+// import 'dashboard.dart'; // Import your other pages here
 import 'viewQR.dart';
 import 'aboutFablab.dart';
-
 
 class BottomNavBarPage extends StatefulWidget {
   const BottomNavBarPage({Key? key}) : super(key: key);
@@ -21,7 +20,7 @@ class _BottomNavBarPageState extends State<BottomNavBarPage> {
       body: IndexedStack(
         index: _currentIndex,
         children: [
-          const DashBoard(),
+          // const DashBoard(),
           const viewQR(),
           const AboutFablab(),
           const Scaffold(), // Placeholder for Profile page
