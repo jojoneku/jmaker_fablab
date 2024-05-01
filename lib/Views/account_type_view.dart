@@ -1,14 +1,12 @@
-import 'package:flutter/cupertino.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:jmaker_fablab/Views/maker_account.dart';
-import 'package:jmaker_fablab/Views/student_account.dart';
+import 'package:jmaker_fablab/routes/app_router.gr.dart';
 import 'package:jmaker_fablab/styles/text_style.dart';
+import 'package:jmaker_fablab/styles/color.dart';
 
-import '../styles/color.dart';
-import 'landingPage.dart';
-
-class AccountType extends StatelessWidget {
-  const AccountType({super.key});
+@RoutePage()
+class AccountTypeView extends StatelessWidget {
+  const AccountTypeView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,19 +24,16 @@ class AccountType extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Column(
-                      children: [ // Removed redundant crossAxisAlignment
+                      children: [
+                        // Removed redundant crossAxisAlignment
                         FloatingActionButton(
+                          heroTag: null,
                           backgroundColor: whiteBG,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(25),
                           ),
                           elevation: 0,
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => LandingPage()),
-                      );
-                          },
+                          onPressed: context.maybePop,
                           child: const Icon(
                             Icons.arrow_back_ios_new,
                             color: blackGreen, // Used color property for icon color
@@ -61,7 +56,7 @@ class AccountType extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(width: 60),
+                    const SizedBox(width: 60),
                   ],
                 ),
                 //Student Button
@@ -72,17 +67,13 @@ class AccountType extends StatelessWidget {
                       height: 233,
                       width: 400,
                       child: FloatingActionButton(
+                        heroTag: null,
                         backgroundColor: mainYellow,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(25),
                         ),
                         elevation: 0,
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => StudentAccount()),
-                          );
-                        },// navigate and store user decision
+                        onPressed: () => context.pushRoute(const StudentAccountRoute()), // navigate and store user decision
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -107,18 +98,13 @@ class AccountType extends StatelessWidget {
                       height: 233,
                       width: 400,
                       child: FloatingActionButton(
+                        heroTag: null,
                         backgroundColor: mainYellow,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(25),
                         ),
                         elevation: 0,
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => MakerAccount()
-                            ),
-                          );
-                        }, // navigate and store user decision
+                        onPressed: () => context.pushRoute(const MakerAccountRoute()), // navigate and store user decision
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,

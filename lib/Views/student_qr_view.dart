@@ -1,18 +1,19 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:jmaker_fablab/Views/account_type.dart';
-import 'package:jmaker_fablab/Views/loginPage.dart';
+import 'package:jmaker_fablab/routes/app_router.gr.dart';
 import 'package:jmaker_fablab/styles/text_style.dart';
-import '../styles/buttons.dart';
-import '../styles/color.dart';
+import 'package:jmaker_fablab/styles/buttons.dart';
+import 'package:jmaker_fablab/styles/color.dart';
 
-class makerQR extends StatefulWidget {
-  const makerQR({super.key});
+@RoutePage()
+class StudentQRView extends StatefulWidget {
+  const StudentQRView({super.key});
 
   @override
-  State<makerQR> createState() => _makerQRState();
+  State<StudentQRView> createState() => _StudentQRViewState();
 }
 
-class _makerQRState extends State<makerQR> {
+class _StudentQRViewState extends State<StudentQRView> {
   bool isChecked = false;
 
   @override
@@ -77,7 +78,7 @@ class _makerQRState extends State<makerQR> {
                       style: CustomTextStyle.primaryBlack,
                     ),
                     Text(
-                      'Maker',
+                      'Student',
                       style: CustomTextStyle.primaryBlack,
                     ),
                     const SizedBox(height: 16),
@@ -91,8 +92,8 @@ class _makerQRState extends State<makerQR> {
               ),
               const Expanded(
                   child: SizedBox(
-                    height: double.infinity,
-                  )),
+                height: double.infinity,
+              )),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -114,12 +115,7 @@ class _makerQRState extends State<makerQR> {
                 padding: const EdgeInsets.fromLTRB(16, 0, 8, 16),
                 child: ElevatedButton(
                   style: longwhite,
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => loginPage()),
-                    );
-                  }, //attach navigation
+                  onPressed: () => context.router.replaceAll([const LoginRoute()]), //attach navigation
                   child: Text(
                     'Log In',
                     style: CustomTextStyle.primaryBlack,

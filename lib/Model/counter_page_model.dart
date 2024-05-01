@@ -1,4 +1,4 @@
-class counter_model {
+class CounterModel {
   static int _counter = 0;
   static int get counter => _counter;
   static int increment() => ++_counter;

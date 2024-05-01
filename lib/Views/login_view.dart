@@ -1,14 +1,39 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:jmaker_fablab/Views/dashboard.dart';
-import 'package:jmaker_fablab/Views/landingPage.dart';
+import 'package:jmaker_fablab/Controller/auth_controller.dart';
+import 'package:jmaker_fablab/routes/app_router.gr.dart';
 import 'package:jmaker_fablab/styles/formStyles.dart';
 import 'package:jmaker_fablab/styles/text_style.dart';
-import '../styles/buttons.dart';
+import 'package:jmaker_fablab/styles/buttons.dart';
+import 'package:jmaker_fablab/styles/color.dart';
 
-import '../styles/color.dart';
+@RoutePage()
+class LoginView extends StatefulWidget {
+  const LoginView({super.key});
 
-class loginPage extends StatelessWidget {
-  const loginPage({super.key});
+  @override
+  State<LoginView> createState() => _LoginViewState();
+}
+
+class _LoginViewState extends State<LoginView> {
+  late TextEditingController _universityEmailController;
+  late TextEditingController _passwordController;
+
+  bool isLoading = false;
+
+  @override
+  void initState() {
+    _universityEmailController = TextEditingController();
+    _passwordController = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _universityEmailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,26 +44,20 @@ class loginPage extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            Row(
-              children: [
-                IconButton(
-                  icon: const Icon(
-                    Icons.arrow_back_ios_new,
-                    color: blackGreen,
+            if (context.router.canPop())
+              Row(
+                children: [
+                  IconButton(
+                    icon: const Icon(
+                      Icons.arrow_back_ios_new,
+                      color: blackGreen,
+                    ),
+                    onPressed: context.maybePop,
                   ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const LandingPage()),
-                    );
-                  },
-                ),
-              ],
-            ),
-            SizedBox(height: 16),
-            Image.asset('assets/images/jmaker_symbol.png',
-                fit: BoxFit.contain, height: 130, width: 130),
+                ],
+              ),
+            const SizedBox(height: 16),
+            Image.asset('assets/images/jmaker_symbol.png', fit: BoxFit.contain, height: 130, width: 130),
             Text(
               'Log In to JMakers',
               style: CustomTextStyle.boldHeader,
@@ -47,8 +66,9 @@ class loginPage extends StatelessWidget {
               "Let's start making your ideas come to life!",
               style: CustomTextStyle.secondaryGrey,
             ),
-            SizedBox(height: 32),
+            const SizedBox(height: 32),
             TextFormField(
+              controller: _universityEmailController,
               decoration: CustomFormDecoration(
                 borderColor: secondGrey,
                 focusedBorderColor: mainYellow,
@@ -56,8 +76,9 @@ class loginPage extends StatelessWidget {
                 hintText: 'Enter the email you signed up with.',
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             TextFormField(
+              controller: _passwordController,
               decoration: CustomFormDecoration(
                 borderColor: secondGrey,
                 focusedBorderColor: mainYellow,
@@ -65,7 +86,7 @@ class loginPage extends StatelessWidget {
                 hintText: 'Enter your password.',
               ),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               // Align to the end (right)
@@ -76,8 +97,7 @@ class loginPage extends StatelessWidget {
                   },
                   child: Text(
                     'Forgot your password?',
-                    style: CustomTextStyle
-                        .secondaryGrey, // Apply your desired style
+                    style: CustomTextStyle.secondaryGrey, // Apply your desired style
                   ),
                 ),
               ],
@@ -86,16 +106,25 @@ class loginPage extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(16, 0, 8, 16),
               child: ElevatedButton(
                 style: longYellow,
-                onPressed: () {
-                  Navigator.push(
+                onPressed: () async {
+                  setState(() => isLoading = true);
+
+                  await AuthController().signIn(
                     context,
-                    MaterialPageRoute(builder: (context) => DashBoard()),
+                    email: _universityEmailController.text,
+                    password: _passwordController.text,
                   );
+
+                  setState(() => isLoading = false);
                 }, //attach navigation to dashboard
-                child: Text(
-                  'Log-In.',
-                  style: CustomTextStyle.primaryBlack,
-                ),
+                child: isLoading
+                    ? const Center(
+                        child: CircularProgressIndicator.adaptive(),
+                      )
+                    : Text(
+                        'Log-In.',
+                        style: CustomTextStyle.primaryBlack,
+                      ),
               ),
             ),
             const Expanded(
@@ -107,16 +136,10 @@ class loginPage extends StatelessWidget {
               // Align to the end (right)
               children: [
                 TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => LandingPage()),
-                    );
-                  },
+                  onPressed: () => context.router.push(const AccountTypeRoute()),
                   child: Text(
                     "Don't have an account? Sign Up",
-                    style: CustomTextStyle
-                        .secondaryGrey, // Apply your desired style
+                    style: CustomTextStyle.secondaryGrey, // Apply your desired style
                   ),
                 ),
               ],
