@@ -4,10 +4,11 @@ import 'package:jmaker_fablab/Views/Machines/CNCMillingMachine.dart';
 import 'package:jmaker_fablab/Views/Machines/CNCShopbotMachine.dart';
 import 'package:jmaker_fablab/Views/Machines/EmbroideryMachine.dart';
 import 'package:jmaker_fablab/Views/Machines/VacuformMachine.dart';
+import 'package:jmaker_fablab/Views/Machines/VinylCutterMachine.dart';
 import '../styles/buttons.dart';
 import 'Machines/3DPrintingMachine.dart';
 import 'Machines/LaserMachine_type.dart';
-import 'Machines/VinylMachine_type.dart';
+
 
 
 
@@ -162,7 +163,7 @@ class _DashBoardState extends State<DashBoard> {
                             onPressed: () {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => const VinylMachineType()),
+                                MaterialPageRoute(builder: (context) => const VinylCutter()),
                               );
                             },
                           ),
