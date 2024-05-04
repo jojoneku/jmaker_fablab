@@ -21,10 +21,16 @@ class CustomBottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(25),
+
+      ),
       height: 56, // Set the desired height
       width: double.infinity, // Take full width of the screen
       child: SalomonBottomBar(
         key: key,
+
+        itemShape: const StadiumBorder(),
         backgroundColor: blackGreen,
         selectedItemColor: mainYellow,
         unselectedItemColor: whiteBG,
@@ -33,13 +39,13 @@ class CustomBottomNavBar extends StatelessWidget {
         onTap: _handleIndexChanged,
         items: [
           SalomonBottomBarItem(
-            icon: const Icon(Icons.local_fire_department),
-            title: const Text("Dashboard"),
+            icon: const Icon(Icons.data_thresholding_outlined),
+            title: const Text("Machines"),
             selectedColor: mainYellow,
           ),
           SalomonBottomBarItem(
             icon: const Icon(Icons.qr_code_outlined),
-            title: const Text("View QR"),
+            title: const Text("QR Code"),
             selectedColor: mainYellow,
           ),
           SalomonBottomBarItem(

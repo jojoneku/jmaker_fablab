@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:jmaker_fablab/firebase_options.dart';
 import 'package:jmaker_fablab/routes/app_router.dart';
 
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
