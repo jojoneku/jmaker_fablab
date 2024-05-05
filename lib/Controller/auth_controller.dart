@@ -170,6 +170,27 @@ class AuthController extends ControllerMVC {
     }
   }
 
+  //* Send password reset email
+  Future<void> sendPasswordResetEmail(context, String email) async {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    try {
+      await auth.sendPasswordResetEmail(email: email);
+      SnackBarController.showSnackBar(context, 'Password reset email has been sent successfully.');
+    } on FirebaseException catch (error) {
+      if (error.code == 'too-many-requests') {
+        SnackBarController.showSnackBar(context, 'We are unable to process your request due to multiple request. Please try again later.');
+      } else if (error.code == 'invalid-email') {
+        SnackBarController.showSnackBar(context, 'Invalid Email provided');
+      } else if (error.code == 'user-not-found') {
+        SnackBarController.showSnackBar(context, 'Account does not exist!');
+      } else {
+        SnackBarController.showSnackBar(context, 'We are unable to process your request at the moment. Please try again later.');
+      }
+    } catch (e) {
+      SnackBarController.showSnackBar(context, 'Something went wrong (${e.toString()}). Please try again later');
+    }
+  }
+
   //* Sign In
   Future<void> signIn(
     BuildContext context, {
