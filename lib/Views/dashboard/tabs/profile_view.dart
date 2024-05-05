@@ -21,7 +21,7 @@ class ProfileView extends StatelessWidget {
         child: ValueListenableBuilder(
           valueListenable: Hive.box('userData').listenable(),
           builder: (context, value, child) {
-            if (value.isEmpty) {
+            if (value.isEmpty || !value.isOpen) {
               return const SizedBox.shrink();
             }
 

@@ -46,36 +46,31 @@ class dashboardButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(16.0, 8.0, 8.0, 8.0),
-      child: Expanded(
-        flex: 1,
-        child: SizedBox(
-          height: 175.0,
-          width: 175.0,
-          child: FloatingActionButton(
-            backgroundColor: mainYellow, // Assuming mainYellow is defined elsewhere
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(25.0),
-            ),
-            elevation: 0.0,
-            onPressed: onPressed,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Image.asset(
-                  imagePath,
-                  fit: BoxFit.contain,
-                  height: 120.0,
-                  width: 170.0,
-                ),
-                Text(text, style: CustomTextStyle.primaryBlack), // Assuming CustomTextStyle is defined elsewhere
-              ],
-            ),
-            // Apply custom button style if provided
-          ),
+    return SizedBox(
+      height: 175.0,
+      width: 175.0,
+      child: FloatingActionButton(
+        heroTag: null,
+        backgroundColor: mainYellow, // Assuming mainYellow is defined elsewhere
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(25.0),
         ),
+        elevation: 0.0,
+        onPressed: onPressed,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Image.asset(
+              imagePath,
+              fit: BoxFit.contain,
+              height: 120.0,
+              width: 170.0,
+            ),
+            Text(text, style: CustomTextStyle.primaryBlack), // Assuming CustomTextStyle is defined elsewhere
+          ],
+        ),
+        // Apply custom button style if provided
       ),
     );
   }

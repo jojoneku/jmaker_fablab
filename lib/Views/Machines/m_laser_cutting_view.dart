@@ -27,6 +27,7 @@ class MLaserCuttingView extends StatelessWidget {
                       children: [
                         // Removed redundant crossAxisAlignment
                         FloatingActionButton(
+                          heroTag: null,
                           backgroundColor: whiteBG,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(25),
@@ -68,6 +69,7 @@ class MLaserCuttingView extends StatelessWidget {
                       height: 233,
                       width: 400,
                       child: FloatingActionButton(
+                        heroTag: null,
                         backgroundColor: blackGreen,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(25),
@@ -107,6 +109,7 @@ class MLaserCuttingView extends StatelessWidget {
                       height: 233,
                       width: 400,
                       child: FloatingActionButton(
+                        heroTag: null,
                         backgroundColor: blackGreen,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(25),

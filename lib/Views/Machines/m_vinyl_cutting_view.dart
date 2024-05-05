@@ -39,123 +39,117 @@ class MVinylCuttingView extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.all(16.0),
-                child: Expanded(
-                  child: Column(
-                    children: [
-                      const Divider(),
-                      Row(
-                        children: [
-                          SizedBox(
-                            width: 100,
-                            height: 80,
-                            child: Image.asset('assets/images/Y_VINYL.png'),
-                          ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'CAMM-1 GS-24',
-                                style: CustomTextStyle.bigTitle,
-                              ),
-                              Text(
-                                'Vinyl Cutter Machine',
-                                style: CustomTextStyle.secondaryGrey,
-                              ),
-                            ],
-                          ),
-                        ],
+                child: Column(
+                  children: [
+                    const Divider(),
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: 100,
+                          height: 80,
+                          child: Image.asset('assets/images/Y_VINYL.png'),
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'CAMM-1 GS-24',
+                              style: CustomTextStyle.bigTitle,
+                            ),
+                            Text(
+                              'Vinyl Cutter Machine',
+                              style: CustomTextStyle.secondaryGrey,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 8),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 8.0, left: 24),
+                      child: Text(
+                        "The Roland CAMM-1 GS-24 is a desktop vinyl cutter "
+                        "known for its precision and user-friendly features. "
+                        "It's ideal for creating professional-looking "
+                        "decals, signs, stencils, and other craft projects "
+                        "from a variety of materials like vinyl, heat transfers, "
+                        "and sandblast material.",
+                        style: CustomTextStyle.secondaryGrey,
                       ),
-                      const SizedBox(height: 8),
-                      Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.only(right: 8.0, left: 24),
-                            child: SizedBox(
-                              width: double.infinity,
-                              child: Text(
-                                "The Roland CAMM-1 GS-24 is a desktop vinyl cutter "
-                                "known for its precision and user-friendly features. "
-                                "It's ideal for creating professional-looking "
-                                "decals, signs, stencils, and other craft projects "
-                                "from a variety of materials like vinyl, heat transfers, "
-                                "and sandblast material.",
-                                style: CustomTextStyle.secondaryGrey,
+                    ),
+                    const SizedBox(height: 8),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8, bottom: 8, left: 16, right: 16),
+                      child: MachineButton(
+                        icon: Icons.file_copy_outlined,
+                        title: 'Operation Manual',
+                        subtitle: 'This comprehensive manual provides \n'
+                            'everything you need to get started.',
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SfPdfViewer.asset(
+                                'assets/pdf/0P_VINYL OPERATION_compressed.pdf',
                               ),
                             ),
-                          ),
-                        ),
-                      ]),
-                      const SizedBox(height: 8),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 8, bottom: 8, left: 16, right: 16),
-                        child: MachineButton(
-                          icon: Icons.file_copy_outlined,
-                          title: 'Operation Manual',
-                          subtitle: 'This comprehensive manual provides \n'
-                              'everything you need to get started.',
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => SfPdfViewer.asset(
-                                  'assets/pdf/0P_VINYL OPERATION_compressed.pdf',
-                                ),
+                          );
+                        },
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8, bottom: 8, left: 16, right: 16),
+                      child: MachineButton(
+                        icon: Icons.data_saver_on,
+                        title: 'Data Making',
+                        subtitle: 'Learn how to create the data'
+                            ' your machine \nneeds to operate.',
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SfPdfViewer.asset(
+                                'assets/pdf/DM_VINYL DATA MAKING_compressed.pdf',
                               ),
-                            );
-                          },
-                        ),
+                            ),
+                          );
+                          //add pdf viewer
+                        },
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 8, bottom: 8, left: 16, right: 16),
-                        child: MachineButton(
-                            icon: Icons.data_saver_on,
-                            title: 'Data Making',
-                            subtitle: 'Learn how to create the data'
-                                ' your machine \nneeds to operate.',
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => SfPdfViewer.asset(
-                                    'assets/pdf/DM_VINYL DATA MAKING_compressed.pdf',
-                                  ),
-                                ),
-                              );
-                              //add pdf viewer
-                            }),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8, bottom: 8, left: 16, right: 16),
+                      child: MachineButton(
+                        icon: Icons.miscellaneous_services_outlined,
+                        title: 'Maintenance Manual',
+                        subtitle: 'Learn how to maintain the machine.',
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SfPdfViewer.asset(
+                                'assets/pdf/MA_VINYL MAINTENANCE_compressed.pdf',
+                              ),
+                            ),
+                          );
+                          //add pdf viewer
+                        },
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 8, bottom: 8, left: 16, right: 16),
-                        child: MachineButton(
-                            icon: Icons.miscellaneous_services_outlined,
-                            title: 'Maintenance Manual',
-                            subtitle: 'Learn how to maintain the machine.',
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => SfPdfViewer.asset(
-                                    'assets/pdf/MA_VINYL MAINTENANCE_compressed.pdf',
-                                  ),
-                                ),
-                              );
-                              //add pdf viewer
-                            }),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8, bottom: 8, left: 16, right: 16),
+                      child: MachineButton(
+                        icon: Icons.video_settings,
+                        title: 'Video Tutorials',
+                        subtitle: 'Visual Learner? Learn from awesome \n'
+                            'video tutorials!',
+                        onPressed: () {
+                          //add pdf viewer
+                        },
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 8, bottom: 8, left: 16, right: 16),
-                        child: MachineButton(
-                            icon: Icons.video_settings,
-                            title: 'Video Tutorials',
-                            subtitle: 'Visual Learner? Learn from awesome \n'
-                                'video tutorials!',
-                            onPressed: () {
-                              //add pdf viewer
-                            }),
-                      )
-                    ],
-                  ),
+                    )
+                  ],
                 ),
               ),
             ],

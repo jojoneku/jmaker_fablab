@@ -7,8 +7,8 @@ import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import '../../styles/buttons.dart';
 
 @RoutePage()
-class M3DPrinterView extends StatelessWidget {
-  const M3DPrinterView({super.key});
+class MGCCLaserView extends StatelessWidget {
+  const MGCCLaserView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class M3DPrinterView extends StatelessWidget {
               SizedBox(
                 width: MediaQuery.of(context).size.width,
                 height: 250, // Define the height for the image
-                child: Image.asset('assets/images/HD_Ultimaker s5.jpg'),
+                child: Image.asset('assets/images/HD_gcc-spirit-laser-engraving-and-cutting-machine-1000x1000.jpg'),
               ),
               Padding(
                 padding: const EdgeInsets.all(16.0),
@@ -47,19 +47,19 @@ class M3DPrinterView extends StatelessWidget {
                       children: [
                         SizedBox(
                           width: 100,
-                          height: 80,
-                          child: Image.asset('assets/images/Y_3DPRINTER.png'),
+                          height: 60,
+                          child: Image.asset('assets/images/Y_LASER.png'),
                         ),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'ULTIMAKER S5',
+                              'GCC Laser Pro',
                               style: CustomTextStyle.bigTitle,
                             ),
                             Text(
-                              '3D Printing Machine',
+                              'Laser Cutting Machine',
                               style: CustomTextStyle.secondaryGrey,
                             ),
                           ],
@@ -70,11 +70,12 @@ class M3DPrinterView extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(right: 8.0, left: 24),
                       child: Text(
-                        'The Ultimaker S5 is a professional-grade 3D printer'
-                        ' known for its reliability and precision. It offers'
-                        ' a large build volume,dual extrusion capabilities, '
-                        'and compatibility with a wide range of materials, '
-                        'making it suitable for prototyping and production.',
+                        'GCC Laser Pro is a series of professional-grade CO2 and fiber '
+                        'laser engravers offering a variety of wattages and worktable sizes. '
+                        'Designed for precise laser engraving and cutting, these machines '
+                        'cater to diverse applications. They empower users to create intricate '
+                        'designs and functional prototypes on various materials like wood, '
+                        'acrylic, and even fabrics.',
                         style: CustomTextStyle.secondaryGrey,
                       ),
                     ),
@@ -91,7 +92,7 @@ class M3DPrinterView extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                               builder: (context) => SfPdfViewer.asset(
-                                'assets/pdf/0P_3D PRINTER OPERATION MANUAL_compressed.pdf',
+                                'assets/pdf/0P_GCC OPERATION_compressed.pdf',
                               ),
                             ),
                           );
@@ -106,14 +107,7 @@ class M3DPrinterView extends StatelessWidget {
                         subtitle: 'Learn how to create the data'
                             ' your machine \nneeds to operate.',
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => SfPdfViewer.asset(
-                                'assets/pdf/DM_3D-PRINTER_DATA-MAKING_compressed.pdf',
-                              ),
-                            ),
-                          );
+                          context.router.push(const NoContentRoute());
                           //add pdf viewer
                         },
                       ),
@@ -125,7 +119,14 @@ class M3DPrinterView extends StatelessWidget {
                         title: 'Maintenance Manual',
                         subtitle: 'Learn how to maintain the machine.',
                         onPressed: () {
-                          context.router.push(const NoContentRoute());
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SfPdfViewer.asset(
+                                'assets/pdf/MA_GCC MAINTENANCE_compressed.pdf',
+                              ),
+                            ),
+                          );
                           //add pdf viewer
                         },
                       ),
@@ -141,7 +142,7 @@ class M3DPrinterView extends StatelessWidget {
                           //add pdf viewer
                         },
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
