@@ -30,6 +30,7 @@ class SnackBarController {
   }) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
+        duration: const Duration(seconds: 6),
         backgroundColor: Colors.grey[700],
         content: Row(
           children: [

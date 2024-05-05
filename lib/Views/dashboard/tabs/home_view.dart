@@ -1,27 +1,26 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:jmaker_fablab/Controller/auth_controller.dart';
-import 'package:jmaker_fablab/Controller/firestore_controller.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:jmaker_fablab/Model/maker_model.dart';
+import 'package:jmaker_fablab/Model/student_model.dart';
+import 'package:jmaker_fablab/routes/app_router.gr.dart';
 import 'package:jmaker_fablab/styles/buttons.dart';
 
-//TODO dashboard integration [functions/methods/profiling]
 @RoutePage()
-class DashBoardView extends StatelessWidget {
-  const DashBoardView({super.key});
+class HomeView extends StatelessWidget {
+  const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FutureBuilder(
-          future: FirestoreController().getStudentDetailsById(context, AuthController().userId ?? ''),
-          builder: (context, snapshot) {
-            if (!snapshot.hasData) {
-              return const Center(
-                child: CircularProgressIndicator.adaptive(),
-              );
-            }
-            return SafeArea(
-              child: Center(
+      body: ValueListenableBuilder(
+        valueListenable: Hive.box('userData').listenable(),
+        builder: (context, value, child) {
+          final userData = value.values.first;
+          print(userData);
+          return SafeArea(
+            child: Builder(builder: (context) {
+              return Center(
                 child: Column(
                   children: [
                     SizedBox(
@@ -35,21 +34,30 @@ class DashBoardView extends StatelessWidget {
                     Expanded(
                       flex: 1,
                       child: SingleChildScrollView(
-                        // physics: const AlwaysScrollableScrollPhysics(),
                         child: Column(
                           children: [
                             const Padding(
                               padding: EdgeInsets.fromLTRB(24, 0, 0, 0),
                               child: Align(
                                 alignment: Alignment.bottomLeft,
-                                child: Text("Welcome,", style: TextStyle(fontSize: 16, color: Colors.black)),
+                                child: Text(
+                                  "Welcome,",
+                                  style: TextStyle(fontSize: 16, color: Colors.black),
+                                ),
                               ),
                             ),
-                            const Padding(
-                              padding: EdgeInsets.fromLTRB(24, 0, 0, 0),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(24, 0, 0, 0),
                               child: Align(
                                 alignment: Alignment.bottomLeft,
-                                child: Text("Innovator,", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                                child: Text(
+                                  userData is StudentModel
+                                      ? userData.fullName
+                                      : userData is MakerModel
+                                          ? userData.fullName
+                                          : 'Innovator',
+                                  style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                                ),
                               ),
                             ),
                             const Padding(
@@ -62,30 +70,40 @@ class DashBoardView extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            Row(children: [
-                              dashboardButton(
-                                text: '3D Printing Machine',
-                                imagePath: 'assets/images/B_3DPRINTER.png',
-                                onPressed: () {},
-                              ),
-                              dashboardButton(
-                                text: 'CNC Milling Machine',
-                                imagePath: 'assets/images/B_CNC.png',
-                                onPressed: () {},
-                              ),
-                            ]),
+                            Row(
+                              children: [
+                                dashboardButton(
+                                  text: '3D Printing Machine',
+                                  imagePath: 'assets/images/B_3DPRINTER.png',
+                                  onPressed: () {
+                                    context.router.push(const M3DPrinterRoute());
+                                  },
+                                ),
+                                dashboardButton(
+                                  text: 'CNC Milling Machine',
+                                  imagePath: 'assets/images/B_CNC.png',
+                                  onPressed: () {
+                                    context.router.push(const MCNCMillingRoute());
+                                  },
+                                ),
+                              ],
+                            ),
                             const SizedBox(height: 8),
                             Row(
                               children: [
                                 dashboardButton(
                                   text: 'Embroidery Machine',
                                   imagePath: 'assets/images/B_EMBROIDERY.png',
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    context.router.push(const MEmbroideryRoute());
+                                  },
                                 ),
                                 dashboardButton(
                                   text: 'Laser Cutting Machine',
                                   imagePath: 'assets/images/B_LASER.png',
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    context.router.push(const MLaserCuttingRoute());
+                                  },
                                 ),
                               ],
                             ),
@@ -95,12 +113,16 @@ class DashBoardView extends StatelessWidget {
                                 dashboardButton(
                                   text: '3D Scanner',
                                   imagePath: 'assets/images/B_SCANNER.png',
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    context.router.push(const M3DScannerRoute());
+                                  },
                                 ),
                                 dashboardButton(
                                   text: 'CNC Shopbot Machine',
                                   imagePath: 'assets/images/B_SHOPBOT.png',
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    context.router.push(const MCNCShopbotRoute());
+                                  },
                                 ),
                               ],
                             ),
@@ -110,12 +132,16 @@ class DashBoardView extends StatelessWidget {
                                 dashboardButton(
                                   text: 'Vacuum Forming Machine',
                                   imagePath: 'assets/images/B_VAQUFORM.png',
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    context.router.push(const MVacuumFormingRoute());
+                                  },
                                 ),
                                 dashboardButton(
                                   text: 'Vinyl Cutting Machine',
                                   imagePath: 'assets/images/B_VINYL.png',
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    context.router.push(const MVinylCuttingRoute());
+                                  },
                                 ),
                               ],
                             ),
@@ -126,9 +152,11 @@ class DashBoardView extends StatelessWidget {
                     ),
                   ],
                 ),
-              ),
-            );
-          }),
+              );
+            }),
+          );
+        },
+      ),
     );
   }
 }

@@ -20,17 +20,29 @@ StudentModel _$StudentModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$StudentModel {
+  @HiveField(0)
   String get uid => throw _privateConstructorUsedError;
+  @HiveField(1)
   String get firstName => throw _privateConstructorUsedError;
+  @HiveField(2)
   String get middleInitial => throw _privateConstructorUsedError;
+  @HiveField(3)
   String get lastName => throw _privateConstructorUsedError;
+  @HiveField(4)
   String get studentId => throw _privateConstructorUsedError;
+  @HiveField(5)
   String get contactNumber => throw _privateConstructorUsedError;
+  @HiveField(6)
   String get academe => throw _privateConstructorUsedError;
+  @HiveField(7)
   String get academicProgram => throw _privateConstructorUsedError;
+  @HiveField(8)
   String get universityEmail => throw _privateConstructorUsedError;
+  @HiveField(9)
   String get gender => throw _privateConstructorUsedError;
+  @HiveField(10)
   String get minority => throw _privateConstructorUsedError;
+  @HiveField(11)
   bool get isAgreedToTermsOfUse => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -46,18 +58,18 @@ abstract class $StudentModelCopyWith<$Res> {
       _$StudentModelCopyWithImpl<$Res, StudentModel>;
   @useResult
   $Res call(
-      {String uid,
-      String firstName,
-      String middleInitial,
-      String lastName,
-      String studentId,
-      String contactNumber,
-      String academe,
-      String academicProgram,
-      String universityEmail,
-      String gender,
-      String minority,
-      bool isAgreedToTermsOfUse});
+      {@HiveField(0) String uid,
+      @HiveField(1) String firstName,
+      @HiveField(2) String middleInitial,
+      @HiveField(3) String lastName,
+      @HiveField(4) String studentId,
+      @HiveField(5) String contactNumber,
+      @HiveField(6) String academe,
+      @HiveField(7) String academicProgram,
+      @HiveField(8) String universityEmail,
+      @HiveField(9) String gender,
+      @HiveField(10) String minority,
+      @HiveField(11) bool isAgreedToTermsOfUse});
 }
 
 /// @nodoc
@@ -148,18 +160,18 @@ abstract class _$$StudentModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String uid,
-      String firstName,
-      String middleInitial,
-      String lastName,
-      String studentId,
-      String contactNumber,
-      String academe,
-      String academicProgram,
-      String universityEmail,
-      String gender,
-      String minority,
-      bool isAgreedToTermsOfUse});
+      {@HiveField(0) String uid,
+      @HiveField(1) String firstName,
+      @HiveField(2) String middleInitial,
+      @HiveField(3) String lastName,
+      @HiveField(4) String studentId,
+      @HiveField(5) String contactNumber,
+      @HiveField(6) String academe,
+      @HiveField(7) String academicProgram,
+      @HiveField(8) String universityEmail,
+      @HiveField(9) String gender,
+      @HiveField(10) String minority,
+      @HiveField(11) bool isAgreedToTermsOfUse});
 }
 
 /// @nodoc
@@ -241,48 +253,61 @@ class __$$StudentModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
+@HiveType(typeId: 0, adapterName: 'StudentModelAdapter')
 class _$StudentModelImpl implements _StudentModel {
   const _$StudentModelImpl(
-      {required this.uid,
-      required this.firstName,
-      required this.middleInitial,
-      required this.lastName,
-      required this.studentId,
-      required this.contactNumber,
-      required this.academe,
-      required this.academicProgram,
-      required this.universityEmail,
-      required this.gender,
-      required this.minority,
-      this.isAgreedToTermsOfUse = true});
+      {@HiveField(0) required this.uid,
+      @HiveField(1) required this.firstName,
+      @HiveField(2) required this.middleInitial,
+      @HiveField(3) required this.lastName,
+      @HiveField(4) required this.studentId,
+      @HiveField(5) required this.contactNumber,
+      @HiveField(6) required this.academe,
+      @HiveField(7) required this.academicProgram,
+      @HiveField(8) required this.universityEmail,
+      @HiveField(9) required this.gender,
+      @HiveField(10) required this.minority,
+      @HiveField(11) this.isAgreedToTermsOfUse = true});
 
   factory _$StudentModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$StudentModelImplFromJson(json);
 
   @override
+  @HiveField(0)
   final String uid;
   @override
+  @HiveField(1)
   final String firstName;
   @override
+  @HiveField(2)
   final String middleInitial;
   @override
+  @HiveField(3)
   final String lastName;
   @override
+  @HiveField(4)
   final String studentId;
   @override
+  @HiveField(5)
   final String contactNumber;
   @override
+  @HiveField(6)
   final String academe;
   @override
+  @HiveField(7)
   final String academicProgram;
   @override
+  @HiveField(8)
   final String universityEmail;
   @override
+  @HiveField(9)
   final String gender;
   @override
+  @HiveField(10)
   final String minority;
   @override
   @JsonKey()
+  @HiveField(11)
   final bool isAgreedToTermsOfUse;
 
   @override
@@ -351,45 +376,57 @@ class _$StudentModelImpl implements _StudentModel {
 
 abstract class _StudentModel implements StudentModel {
   const factory _StudentModel(
-      {required final String uid,
-      required final String firstName,
-      required final String middleInitial,
-      required final String lastName,
-      required final String studentId,
-      required final String contactNumber,
-      required final String academe,
-      required final String academicProgram,
-      required final String universityEmail,
-      required final String gender,
-      required final String minority,
-      final bool isAgreedToTermsOfUse}) = _$StudentModelImpl;
+      {@HiveField(0) required final String uid,
+      @HiveField(1) required final String firstName,
+      @HiveField(2) required final String middleInitial,
+      @HiveField(3) required final String lastName,
+      @HiveField(4) required final String studentId,
+      @HiveField(5) required final String contactNumber,
+      @HiveField(6) required final String academe,
+      @HiveField(7) required final String academicProgram,
+      @HiveField(8) required final String universityEmail,
+      @HiveField(9) required final String gender,
+      @HiveField(10) required final String minority,
+      @HiveField(11) final bool isAgreedToTermsOfUse}) = _$StudentModelImpl;
 
   factory _StudentModel.fromJson(Map<String, dynamic> json) =
       _$StudentModelImpl.fromJson;
 
   @override
+  @HiveField(0)
   String get uid;
   @override
+  @HiveField(1)
   String get firstName;
   @override
+  @HiveField(2)
   String get middleInitial;
   @override
+  @HiveField(3)
   String get lastName;
   @override
+  @HiveField(4)
   String get studentId;
   @override
+  @HiveField(5)
   String get contactNumber;
   @override
+  @HiveField(6)
   String get academe;
   @override
+  @HiveField(7)
   String get academicProgram;
   @override
+  @HiveField(8)
   String get universityEmail;
   @override
+  @HiveField(9)
   String get gender;
   @override
+  @HiveField(10)
   String get minority;
   @override
+  @HiveField(11)
   bool get isAgreedToTermsOfUse;
   @override
   @JsonKey(ignore: true)

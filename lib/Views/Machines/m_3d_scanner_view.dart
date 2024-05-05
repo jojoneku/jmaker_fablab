@@ -1,11 +1,14 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:jmaker_fablab/routes/app_router.gr.dart';
 import 'package:jmaker_fablab/styles/color.dart';
 import 'package:jmaker_fablab/styles/text_style.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import '../../styles/buttons.dart';
 
-class ULSLaser extends StatelessWidget {
-  const ULSLaser({super.key});
+@RoutePage()
+class M3DScannerView extends StatelessWidget {
+  const M3DScannerView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +21,8 @@ class ULSLaser extends StatelessWidget {
           icon: const Icon(
             Icons.chevron_left_outlined,
             color: blackGreen,
-            size: 24,),
+            size: 24,
+          ),
           onPressed: () {
             Navigator.of(context).pop();
           },
@@ -31,8 +35,8 @@ class ULSLaser extends StatelessWidget {
             children: [
               SizedBox(
                 width: MediaQuery.of(context).size.width,
-                height: 250, // Define the height for the image
-                child: Image.asset('assets/images/HD_ULS VLS 6.60 Laser.jpg'),
+                height: 200, // Define the height for the image
+                child: Image.asset('assets/images/HD_Shining 3D Einscan SP Scanner.png'),
               ),
               Padding(
                 padding: const EdgeInsets.all(16.0),
@@ -43,21 +47,21 @@ class ULSLaser extends StatelessWidget {
                         const Divider(),
                         Row(
                           children: [
-                            Container(
+                            SizedBox(
                               width: 100,
-                              height: 60,
-                              child: Image.asset('assets/images/Y_LASER.png'),
+                              height: 80,
+                              child: Image.asset('assets/images/Y_SCANNER.png'),
                             ),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'ULS VLS 6.60 Laser',
+                                  'Einscan - SP V2',
                                   style: CustomTextStyle.bigTitle,
                                 ),
                                 Text(
-                                  'Laser Cutting Machine',
+                                  '3D Scanning Machine',
                                   style: CustomTextStyle.secondaryGrey,
                                 ),
                               ],
@@ -65,27 +69,27 @@ class ULSLaser extends StatelessWidget {
                           ],
                         ),
                         const SizedBox(height: 8),
-                        Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.only(right: 8.0, left: 24),
-                                  child: Container(
-                                    width: double.infinity,
-                                    child: Text(
-                                      'The Universal Laser Systems VLS 6.60 Laser is a CO2 '
-                                          'laser cutter ideal for a variety of engraving and '
-                                          'cutting tasks. With a large work area and interchangeable '
-                                          'laser cartridges ranging from 10 to 60 watts, it caters '
-                                          'to both small and intricate designs on various materials '
-                                          'like wood, acrylic, and fabric.',
-                                      style: CustomTextStyle.secondaryGrey,
-                                    ),
-                                  ),
+                        Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 8.0, left: 24),
+                              child: SizedBox(
+                                width: double.infinity,
+                                child: Text(
+                                  'This desktop 3D scanner utilizes structured light '
+                                  'technology for high-precision object capture. '
+                                  'It employs a dual-camera system alongside a projector '
+                                  'to capture detailed scans of various object sizes and '
+                                  'textures. The EinScan SP features user-friendly software, '
+                                  'making it suitable for professionals in product design, '
+                                  'quality control, and reverse engineering who require '
+                                  'accurate digital representations of physical objects.',
+                                  style: CustomTextStyle.secondaryGrey,
                                 ),
                               ),
-                            ]),
+                            ),
+                          ),
+                        ]),
                         const SizedBox(height: 8),
                         Padding(
                           padding: const EdgeInsets.only(top: 8, bottom: 8, left: 16, right: 16),
@@ -94,17 +98,17 @@ class ULSLaser extends StatelessWidget {
                             title: 'Operation Manual',
                             subtitle: 'This comprehensive manual provides \n'
                                 'everything you need to get started.',
-                            onPressed: (){
+                            onPressed: () {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => SfPdfViewer.asset(
-                                    'assets/pdf/0P_UNIVERSAL LASER_MANUAL OPERATION_compressed.pdf',
+                                    'assets/pdf/0P_3D-SCANNER-OPERATION-_compressed.pdf',
                                   ),
                                 ),
                               );
+                              //add pdf viewer
                             },
-          
                           ),
                         ),
                         Padding(
@@ -114,18 +118,10 @@ class ULSLaser extends StatelessWidget {
                               title: 'Data Making',
                               subtitle: 'Learn how to create the data'
                                   ' your machine \nneeds to operate.',
-                              onPressed: (){
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => SfPdfViewer.asset(
-                                      'assets/pdf/DM_Copy of UNIVERSAL LASER _ DATA MAKING_compressed.pdf',
-                                    ),
-                                  ),
-                                );
+                              onPressed: () {
+                                context.router.push(const NoContentRoute());
                                 //add pdf viewer
-                              }
-                          ),
+                              }),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 8, bottom: 8, left: 16, right: 16),
@@ -133,18 +129,17 @@ class ULSLaser extends StatelessWidget {
                               icon: Icons.miscellaneous_services_outlined,
                               title: 'Maintenance Manual',
                               subtitle: 'Learn how to maintain the machine.',
-                              onPressed: (){
+                              onPressed: () {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => SfPdfViewer.asset(
-                                      'assets/pdf/MA_UNIVERSAL LASER_MAINTAINANCE_compressed.pdf',
+                                      'assets/pdf/MA_MAINTENACE-3D SCANNER_compressed.pdf',
                                     ),
                                   ),
                                 );
                                 //add pdf viewer
-                              }
-                          ),
+                              }),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 8, bottom: 8, left: 16, right: 16),
@@ -153,10 +148,9 @@ class ULSLaser extends StatelessWidget {
                               title: 'Video Tutorials',
                               subtitle: 'Visual Learner? Learn from awesome \n'
                                   'video tutorials!',
-                              onPressed: (){
+                              onPressed: () {
                                 //add pdf viewer
-                              }
-                          ),
+                              }),
                         )
                       ],
                     ),

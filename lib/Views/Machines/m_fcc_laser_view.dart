@@ -1,12 +1,14 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:jmaker_fablab/routes/app_router.gr.dart';
 import 'package:jmaker_fablab/styles/color.dart';
 import 'package:jmaker_fablab/styles/text_style.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
-
 import '../../styles/buttons.dart';
 
-class CNCShopbot extends StatelessWidget {
-  const CNCShopbot({super.key});
+@RoutePage()
+class MGCCLaserView extends StatelessWidget {
+  const MGCCLaserView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,8 @@ class CNCShopbot extends StatelessWidget {
           icon: const Icon(
             Icons.chevron_left_outlined,
             color: blackGreen,
-            size: 24,),
+            size: 24,
+          ),
           onPressed: () {
             Navigator.of(context).pop();
           },
@@ -32,8 +35,8 @@ class CNCShopbot extends StatelessWidget {
             children: [
               SizedBox(
                 width: MediaQuery.of(context).size.width,
-                height: 215, // Define the height for the image
-                child: Image.asset('assets/images/HD_ShopBot PRSstandard.png'),
+                height: 250, // Define the height for the image
+                child: Image.asset('assets/images/HD_gcc-spirit-laser-engraving-and-cutting-machine-1000x1000.jpg'),
               ),
               Padding(
                 padding: const EdgeInsets.all(16.0),
@@ -44,21 +47,21 @@ class CNCShopbot extends StatelessWidget {
                         const Divider(),
                         Row(
                           children: [
-                            Container(
+                            SizedBox(
                               width: 100,
-                              height: 80,
-                              child: Image.asset('assets/images/Y_SHOPBOT.png'),
+                              height: 60,
+                              child: Image.asset('assets/images/Y_LASER.png'),
                             ),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'PRSalpha CNC',
+                                  'GCC Laser Pro',
                                   style: CustomTextStyle.bigTitle,
                                 ),
                                 Text(
-                                  'Large CNC Milling Machine',
+                                  'Laser Cutting Machine',
                                   style: CustomTextStyle.secondaryGrey,
                                 ),
                               ],
@@ -66,26 +69,25 @@ class CNCShopbot extends StatelessWidget {
                           ],
                         ),
                         const SizedBox(height: 8),
-                        Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.only(right: 8.0, left: 24),
-                                  child: Container(
-                                    width: double.infinity,
-                                    child: Text(
-                                      'This industrial-grade CNC router boasts high-speed capabilities and robust construction. '
-                                          'Featuring a gantry-style design with tough precision linear bearings and hardened steel'
-                                          'rails, it ensures stability and accuracy for demanding tasks.  The powerful HSD spindle '
-                                          'and closed-loop alphaStep motors deliver fast and precise material cutting across various '
-                                          'applications in wood, plastic, aluminum, and other materials.',
-                                      style: CustomTextStyle.secondaryGrey,
-                                    ),
-                                  ),
+                        Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 8.0, left: 24),
+                              child: SizedBox(
+                                width: double.infinity,
+                                child: Text(
+                                  'GCC Laser Pro is a series of professional-grade CO2 and fiber '
+                                  'laser engravers offering a variety of wattages and worktable sizes. '
+                                  'Designed for precise laser engraving and cutting, these machines '
+                                  'cater to diverse applications. They empower users to create intricate '
+                                  'designs and functional prototypes on various materials like wood, '
+                                  'acrylic, and even fabrics.',
+                                  style: CustomTextStyle.secondaryGrey,
                                 ),
                               ),
-                            ]),
+                            ),
+                          ),
+                        ]),
                         const SizedBox(height: 8),
                         Padding(
                           padding: const EdgeInsets.only(top: 8, bottom: 8, left: 16, right: 16),
@@ -94,18 +96,16 @@ class CNCShopbot extends StatelessWidget {
                             title: 'Operation Manual',
                             subtitle: 'This comprehensive manual provides \n'
                                 'everything you need to get started.',
-                            onPressed: (){
+                            onPressed: () {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => SfPdfViewer.asset(
-                                    'assets/pdf/0P_CNC.SHOPBOT_OPERATION__compressed.pdf',
+                                    'assets/pdf/0P_GCC OPERATION_compressed.pdf',
                                   ),
                                 ),
                               );
-                              //add pdf viewer
                             },
-
                           ),
                         ),
                         Padding(
@@ -115,18 +115,10 @@ class CNCShopbot extends StatelessWidget {
                               title: 'Data Making',
                               subtitle: 'Learn how to create the data'
                                   ' your machine \nneeds to operate.',
-                              onPressed: (){
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => SfPdfViewer.asset(
-                                      'assets/pdf/DM_DATA.MAKING_CNC.SHOPBOT-2_compressed.pdf',
-                                    ),
-                                  ),
-                                );
+                              onPressed: () {
+                                context.router.push(const NoContentRoute());
                                 //add pdf viewer
-                              }
-                          ),
+                              }),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 8, bottom: 8, left: 16, right: 16),
@@ -134,18 +126,17 @@ class CNCShopbot extends StatelessWidget {
                               icon: Icons.miscellaneous_services_outlined,
                               title: 'Maintenance Manual',
                               subtitle: 'Learn how to maintain the machine.',
-                              onPressed: (){
+                              onPressed: () {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => SfPdfViewer.asset(
-                                      'assets/pdf/MA_MAINTENANCE_CNC.SHOPBOT_compressed.pdf',
+                                      'assets/pdf/MA_GCC MAINTENANCE_compressed.pdf',
                                     ),
                                   ),
                                 );
                                 //add pdf viewer
-                              }
-                          ),
+                              }),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 8, bottom: 8, left: 16, right: 16),
@@ -154,11 +145,10 @@ class CNCShopbot extends StatelessWidget {
                               title: 'Video Tutorials',
                               subtitle: 'Visual Learner? Learn from awesome \n'
                                   'video tutorials!',
-                              onPressed: (){
+                              onPressed: () {
                                 //add pdf viewer
-                              }
-                          ),
-                        )
+                              }),
+                        ),
                       ],
                     ),
                   ),

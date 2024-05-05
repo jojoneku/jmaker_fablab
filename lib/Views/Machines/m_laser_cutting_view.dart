@@ -1,13 +1,12 @@
-import 'package:flutter/cupertino.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:jmaker_fablab/Views/Machines/GCCLaserMachine.dart';
-import 'package:jmaker_fablab/Views/Machines/ULSLaserMachine.dart';
+import 'package:jmaker_fablab/routes/app_router.gr.dart';
 import 'package:jmaker_fablab/styles/text_style.dart';
 import 'package:jmaker_fablab/styles/color.dart';
 
-
-class LaserMachineType extends StatelessWidget {
-  const LaserMachineType({super.key});
+@RoutePage()
+class MLaserCuttingView extends StatelessWidget {
+  const MLaserCuttingView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +24,8 @@ class LaserMachineType extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Column(
-                      children: [ // Removed redundant crossAxisAlignment
+                      children: [
+                        // Removed redundant crossAxisAlignment
                         FloatingActionButton(
                           backgroundColor: whiteBG,
                           shape: RoundedRectangleBorder(
@@ -57,7 +57,7 @@ class LaserMachineType extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(width: 60),
+                    const SizedBox(width: 60),
                   ],
                 ),
                 //Student Button
@@ -74,11 +74,8 @@ class LaserMachineType extends StatelessWidget {
                         ),
                         elevation: 0,
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => GCCLaser()),
-                          );
-                        },// navigate and store user decision
+                          context.router.push(const MGCCLaserRoute());
+                        }, // navigate and store user decision
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -89,12 +86,13 @@ class LaserMachineType extends StatelessWidget {
                               height: 200,
                               width: 2000,
                             ),
-                            const Text('GCC Laser Pro', style:
-                            TextStyle(
-                              color: mainYellow,
-                              fontWeight: FontWeight.w700,
-                              fontSize: 24,
-                            ),
+                            const Text(
+                              'GCC Laser Pro',
+                              style: TextStyle(
+                                color: mainYellow,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 24,
+                              ),
                             ),
                           ],
                         ),
@@ -115,11 +113,7 @@ class LaserMachineType extends StatelessWidget {
                         ),
                         elevation: 0,
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => ULSLaser()
-                            ),
-                          );
+                          context.router.push(const MULSLaserRoute());
                         }, // navigate and store user decision
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -131,15 +125,16 @@ class LaserMachineType extends StatelessWidget {
                                 'assets/images/Y_LASER.png',
                                 fit: BoxFit.contain,
                                 height: 200,
-                                width:200,
+                                width: 200,
                               ),
                             ),
-                            const Text('ULS VLS 6.60', style:
-                                TextStyle(
-                                  color: mainYellow,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 24,
-                                ),
+                            const Text(
+                              'ULS VLS 6.60',
+                              style: TextStyle(
+                                color: mainYellow,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 24,
+                              ),
                             ),
                           ],
                         ),

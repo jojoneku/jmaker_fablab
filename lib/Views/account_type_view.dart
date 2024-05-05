@@ -73,7 +73,7 @@ class AccountTypeView extends StatelessWidget {
                           borderRadius: BorderRadius.circular(25),
                         ),
                         elevation: 0,
-                        onPressed: () => context.pushRoute(const StudentAccountRoute()), // navigate and store user decision
+                        onPressed: () => context.pushRoute(StudentAccountRoute()),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -104,7 +104,7 @@ class AccountTypeView extends StatelessWidget {
                           borderRadius: BorderRadius.circular(25),
                         ),
                         elevation: 0,
-                        onPressed: () => context.pushRoute(const MakerAccountRoute()), // navigate and store user decision
+                        onPressed: () => context.pushRoute(MakerAccountRoute()),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,

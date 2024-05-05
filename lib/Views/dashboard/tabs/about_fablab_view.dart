@@ -1,17 +1,16 @@
-import 'package:flutter/cupertino.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:jmaker_fablab/styles/text_style.dart';
 
-
-import '../styles/text_style.dart';
-
-class AboutFablab extends StatefulWidget {
-  const AboutFablab({super.key});
+@RoutePage()
+class AboutFablabView extends StatefulWidget {
+  const AboutFablabView({super.key});
 
   @override
-  State<AboutFablab> createState() => _AboutFablabState();
+  State<AboutFablabView> createState() => _AboutFablabViewState();
 }
 
-class _AboutFablabState extends State<AboutFablab> {
+class _AboutFablabViewState extends State<AboutFablabView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,8 +51,11 @@ class _AboutFablabState extends State<AboutFablab> {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 16.0),
-                      child: Image.asset('assets/images/Fab_Lab_logo.png',
-                          height: 100, width: 80,),
+                      child: Image.asset(
+                        'assets/images/Fab_Lab_logo.png',
+                        height: 100,
+                        width: 80,
+                      ),
                     ),
                   ],
                 ),
@@ -72,8 +74,7 @@ class _AboutFablabState extends State<AboutFablab> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(left: 16.0, right: 16),
-                      child: Image.asset('assets/images/network.png',
-                          height: 100, width: 90),
+                      child: Image.asset('assets/images/network.png', height: 100, width: 90),
                     ),
                     Expanded(
                       child: Padding(
@@ -85,10 +86,9 @@ class _AboutFablabState extends State<AboutFablab> {
                             textAlign: TextAlign.left,
                             text: TextSpan(
                               style: CustomTextStyle.primaryBlack,
-                              children: [
-                                const TextSpan(
-                                  text:
-                                      "The FabLab Network is an open creative community of fabricators,"
+                              children: const [
+                                TextSpan(
+                                  text: "The FabLab Network is an open creative community of fabricators,"
                                       " artists, scientists, engineers, educators, students, amateurs, and  professionals"
                                       " located in many countries and Fablabs across the Globe.\n",
                                 ),
@@ -116,19 +116,18 @@ class _AboutFablabState extends State<AboutFablab> {
                           width: double.infinity,
                           child: Text(
                             "FabLabs are open to everyone, "
-                                "regardless of age, background, or experience level. "
-                                "They are designed to be inclusive spaces where people "
-                                "can come together to learn, create, and innovate. ",
+                            "regardless of age, background, or experience level. "
+                            "They are designed to be inclusive spaces where people "
+                            "can come together to learn, create, and innovate. ",
                             style: CustomTextStyle.primaryBlack,
                           ),
                         ),
                       ),
                     ),
-
                   ],
                 ),
 
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 //2300+ fablabs
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -138,8 +137,7 @@ class _AboutFablabState extends State<AboutFablab> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(left: 16.0, right: 16),
-                          child: Image.asset('assets/images/labs-01.png',
-                              height: 100),
+                          child: Image.asset('assets/images/labs-01.png', height: 100),
                         ),
                         Text(
                           '2300+',
@@ -152,14 +150,13 @@ class _AboutFablabState extends State<AboutFablab> {
                         )),
                       ],
                     ),
-                    SizedBox(width: 32),
+                    const SizedBox(width: 32),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Padding(
-                          padding: EdgeInsets.only(left: 16.0, right: 16),
-                          child: Image.asset('assets/images/countries-01.png',
-                              height: 100),
+                          padding: const EdgeInsets.only(left: 16.0, right: 16),
+                          child: Image.asset('assets/images/countries-01.png', height: 100),
                         ),
                         Text(
                           '120+',
@@ -173,7 +170,7 @@ class _AboutFablabState extends State<AboutFablab> {
                     ),
                   ],
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 Align(
                   alignment: Alignment.center,
                   child: Text(
@@ -200,26 +197,24 @@ class _AboutFablabState extends State<AboutFablab> {
                           width: double.infinity,
                           child: Text(
                             "Fabrication Laboratory (FABLAB) Bohol is the first Digital Fabrication "
-                                "Laboratory in the Philippines launched last May 2, 2014 as training provider, "
-                                "technology access center and a service bureau. It is a consortium brand "
-                                "for local empowerment of the Department of Trade and Industry, Department "
-                                "of Science and Technology, Japan International Cooperation Agency and Bohol Island State University."
+                            "Laboratory in the Philippines launched last May 2, 2014 as training provider, "
+                            "technology access center and a service bureau. It is a consortium brand "
+                            "for local empowerment of the Department of Trade and Industry, Department "
+                            "of Science and Technology, Japan International Cooperation Agency and Bohol Island State University."
                             "\n"
-                              "\nFABLAB serves as a makerspace to all the makers, researchers, designers, "
-                                "start-ups, micro, small, medium enterprises (MSMEs) and enthusiast individuals. "
+                            "\nFABLAB serves as a makerspace to all the makers, researchers, designers, "
+                            "start-ups, micro, small, medium enterprises (MSMEs) and enthusiast individuals. "
                             "\n"
-                                "\nFABLAB conducts various digital fabrication design workshops, provides product "
-                                "development for MSMEs and holds laboratory classes.",
+                            "\nFABLAB conducts various digital fabrication design workshops, provides product "
+                            "development for MSMEs and holds laboratory classes.",
                             style: CustomTextStyle.primaryBlack,
                           ),
                         ),
                       ),
                     ),
-
                   ],
                 ),
                 //who can use fablab
-
               ],
             ),
           ),

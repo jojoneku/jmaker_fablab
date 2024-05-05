@@ -1,12 +1,14 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:jmaker_fablab/routes/app_router.gr.dart';
 import 'package:jmaker_fablab/styles/color.dart';
 import 'package:jmaker_fablab/styles/text_style.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
-
 import '../../styles/buttons.dart';
 
-class CNCMilling extends StatelessWidget {
-  const CNCMilling({super.key});
+@RoutePage()
+class M3DPrinterView extends StatelessWidget {
+  const M3DPrinterView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,8 @@ class CNCMilling extends StatelessWidget {
           icon: const Icon(
             Icons.chevron_left_outlined,
             color: blackGreen,
-            size: 24,),
+            size: 24,
+          ),
           onPressed: () {
             Navigator.of(context).pop();
           },
@@ -32,8 +35,8 @@ class CNCMilling extends StatelessWidget {
             children: [
               SizedBox(
                 width: MediaQuery.of(context).size.width,
-                height: 230, // Define the height for the image
-                child: Image.asset('assets/images/HD_MDX 40A.jpg'),
+                height: 250, // Define the height for the image
+                child: Image.asset('assets/images/HD_Ultimaker s5.jpg'),
               ),
               Padding(
                 padding: const EdgeInsets.all(16.0),
@@ -44,21 +47,21 @@ class CNCMilling extends StatelessWidget {
                         const Divider(),
                         Row(
                           children: [
-                            Container(
+                            SizedBox(
                               width: 100,
                               height: 80,
-                              child: Image.asset('assets/images/Y_CNC.png'),
+                              child: Image.asset('assets/images/Y_3DPRINTER.png'),
                             ),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Roland MDX-40A',
+                                  'ULTIMAKER S5',
                                   style: CustomTextStyle.bigTitle,
                                 ),
                                 Text(
-                                  'CNC Milling Machine',
+                                  '3D Printing Machine',
                                   style: CustomTextStyle.secondaryGrey,
                                 ),
                               ],
@@ -66,27 +69,24 @@ class CNCMilling extends StatelessWidget {
                           ],
                         ),
                         const SizedBox(height: 8),
-                        Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.only(right: 8.0, left: 24),
-                                  child: Container(
-                                    width: double.infinity,
-                                    child: Text(
-                                      'The Roland MDX-40A is a compact and user-friendly desktop '
-                                          'CNC milling machine. It allows designers, engineers, and '
-                                          'students to create precision 3D models and prototypes '
-                                          'from various non-proprietary materials like plastic, resin,'
-                                          ' and wood. Its small footprint makes it ideal for workshops, '
-                                          'classrooms, and even offices.',
-                                      style: CustomTextStyle.secondaryGrey,
-                                    ),
-                                  ),
+                        Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 8.0, left: 24),
+                              child: SizedBox(
+                                width: double.infinity,
+                                child: Text(
+                                  'The Ultimaker S5 is a professional-grade 3D printer'
+                                  ' known for its reliability and precision. It offers'
+                                  ' a large build volume,dual extrusion capabilities, '
+                                  'and compatibility with a wide range of materials, '
+                                  'making it suitable for prototyping and production.',
+                                  style: CustomTextStyle.secondaryGrey,
                                 ),
                               ),
-                            ]),
+                            ),
+                          ),
+                        ]),
                         const SizedBox(height: 8),
                         Padding(
                           padding: const EdgeInsets.only(top: 8, bottom: 8, left: 16, right: 16),
@@ -95,17 +95,16 @@ class CNCMilling extends StatelessWidget {
                             title: 'Operation Manual',
                             subtitle: 'This comprehensive manual provides \n'
                                 'everything you need to get started.',
-                            onPressed: (){
+                            onPressed: () {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => SfPdfViewer.asset(
-                                    'assets/pdf/0P_MDX_OPERATION_compressed.pdf',
+                                    'assets/pdf/0P_3D PRINTER OPERATION MANUAL_compressed.pdf',
                                   ),
                                 ),
                               );
                             },
-
                           ),
                         ),
                         Padding(
@@ -115,18 +114,17 @@ class CNCMilling extends StatelessWidget {
                               title: 'Data Making',
                               subtitle: 'Learn how to create the data'
                                   ' your machine \nneeds to operate.',
-                              onPressed: (){
+                              onPressed: () {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => SfPdfViewer.asset(
-                                      'assets/pdf/DM_Copy of MDX_DATA MAKING_compressed.pdf',
+                                      'assets/pdf/DM_3D-PRINTER_DATA-MAKING_compressed.pdf',
                                     ),
                                   ),
                                 );
                                 //add pdf viewer
-                              }
-                          ),
+                              }),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 8, bottom: 8, left: 16, right: 16),
@@ -134,18 +132,10 @@ class CNCMilling extends StatelessWidget {
                               icon: Icons.miscellaneous_services_outlined,
                               title: 'Maintenance Manual',
                               subtitle: 'Learn how to maintain the machine.',
-                              onPressed: (){
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => SfPdfViewer.asset(
-                                      'assets/pdf/MA_MDX_MAINTENANCE_compressed.pdf',
-                                    ),
-                                  ),
-                                );
+                              onPressed: () {
+                                context.router.push(const NoContentRoute());
                                 //add pdf viewer
-                              }
-                          ),
+                              }),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 8, bottom: 8, left: 16, right: 16),
@@ -154,10 +144,9 @@ class CNCMilling extends StatelessWidget {
                               title: 'Video Tutorials',
                               subtitle: 'Visual Learner? Learn from awesome \n'
                                   'video tutorials!',
-                              onPressed: (){
+                              onPressed: () {
                                 //add pdf viewer
-                              }
-                          ),
+                              }),
                         )
                       ],
                     ),

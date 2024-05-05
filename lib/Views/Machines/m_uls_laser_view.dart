@@ -1,12 +1,13 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:jmaker_fablab/Views/Machines/NoContent.dart';
 import 'package:jmaker_fablab/styles/color.dart';
 import 'package:jmaker_fablab/styles/text_style.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import '../../styles/buttons.dart';
 
-class f3DPrinter extends StatelessWidget {
-  const f3DPrinter({Key? key}) : super(key: key);
+@RoutePage()
+class MULSLaserView extends StatelessWidget {
+  const MULSLaserView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,8 @@ class f3DPrinter extends StatelessWidget {
           icon: const Icon(
             Icons.chevron_left_outlined,
             color: blackGreen,
-            size: 24,),
+            size: 24,
+          ),
           onPressed: () {
             Navigator.of(context).pop();
           },
@@ -33,7 +35,7 @@ class f3DPrinter extends StatelessWidget {
               SizedBox(
                 width: MediaQuery.of(context).size.width,
                 height: 250, // Define the height for the image
-                child: Image.asset('assets/images/HD_Ultimaker s5.jpg'),
+                child: Image.asset('assets/images/HD_ULS VLS 6.60 Laser.jpg'),
               ),
               Padding(
                 padding: const EdgeInsets.all(16.0),
@@ -44,21 +46,21 @@ class f3DPrinter extends StatelessWidget {
                         const Divider(),
                         Row(
                           children: [
-                            Container(
+                            SizedBox(
                               width: 100,
-                              height: 80,
-                              child: Image.asset('assets/images/Y_3DPRINTER.png'),
+                              height: 60,
+                              child: Image.asset('assets/images/Y_LASER.png'),
                             ),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'ULTIMAKER S5',
+                                  'ULS VLS 6.60 Laser',
                                   style: CustomTextStyle.bigTitle,
                                 ),
                                 Text(
-                                  '3D Printing Machine',
+                                  'Laser Cutting Machine',
                                   style: CustomTextStyle.secondaryGrey,
                                 ),
                               ],
@@ -66,26 +68,25 @@ class f3DPrinter extends StatelessWidget {
                           ],
                         ),
                         const SizedBox(height: 8),
-                        Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.only(right: 8.0, left: 24),
-                                  child: Container(
-                                    width: double.infinity,
-                                    child: Text(
-                                      'The Ultimaker S5 is a professional-grade 3D printer'
-                                          ' known for its reliability and precision. It offers'
-                                          ' a large build volume,dual extrusion capabilities, '
-                                          'and compatibility with a wide range of materials, '
-                                          'making it suitable for prototyping and production.',
-                                      style: CustomTextStyle.secondaryGrey,
-                                    ),
-                                  ),
+                        Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 8.0, left: 24),
+                              child: SizedBox(
+                                width: double.infinity,
+                                child: Text(
+                                  'The Universal Laser Systems VLS 6.60 Laser is a CO2 '
+                                  'laser cutter ideal for a variety of engraving and '
+                                  'cutting tasks. With a large work area and interchangeable '
+                                  'laser cartridges ranging from 10 to 60 watts, it caters '
+                                  'to both small and intricate designs on various materials '
+                                  'like wood, acrylic, and fabric.',
+                                  style: CustomTextStyle.secondaryGrey,
                                 ),
                               ),
-                            ]),
+                            ),
+                          ),
+                        ]),
                         const SizedBox(height: 8),
                         Padding(
                           padding: const EdgeInsets.only(top: 8, bottom: 8, left: 16, right: 16),
@@ -94,17 +95,16 @@ class f3DPrinter extends StatelessWidget {
                             title: 'Operation Manual',
                             subtitle: 'This comprehensive manual provides \n'
                                 'everything you need to get started.',
-                            onPressed: (){
+                            onPressed: () {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => SfPdfViewer.asset(
-                                    'assets/pdf/0P_3D PRINTER OPERATION MANUAL_compressed.pdf',
+                                    'assets/pdf/0P_UNIVERSAL LASER_MANUAL OPERATION_compressed.pdf',
                                   ),
                                 ),
                               );
                             },
-
                           ),
                         ),
                         Padding(
@@ -114,18 +114,17 @@ class f3DPrinter extends StatelessWidget {
                               title: 'Data Making',
                               subtitle: 'Learn how to create the data'
                                   ' your machine \nneeds to operate.',
-                              onPressed: (){
+                              onPressed: () {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => SfPdfViewer.asset(
-                                      'assets/pdf/DM_3D-PRINTER_DATA-MAKING_compressed.pdf',
+                                      'assets/pdf/DM_Copy of UNIVERSAL LASER _ DATA MAKING_compressed.pdf',
                                     ),
                                   ),
                                 );
                                 //add pdf viewer
-                              }
-                          ),
+                              }),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 8, bottom: 8, left: 16, right: 16),
@@ -133,16 +132,17 @@ class f3DPrinter extends StatelessWidget {
                               icon: Icons.miscellaneous_services_outlined,
                               title: 'Maintenance Manual',
                               subtitle: 'Learn how to maintain the machine.',
-                              onPressed: (){
+                              onPressed: () {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => const NoContent(),
+                                    builder: (context) => SfPdfViewer.asset(
+                                      'assets/pdf/MA_UNIVERSAL LASER_MAINTAINANCE_compressed.pdf',
+                                    ),
                                   ),
                                 );
                                 //add pdf viewer
-                              }
-                          ),
+                              }),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 8, bottom: 8, left: 16, right: 16),
@@ -151,10 +151,9 @@ class f3DPrinter extends StatelessWidget {
                               title: 'Video Tutorials',
                               subtitle: 'Visual Learner? Learn from awesome \n'
                                   'video tutorials!',
-                              onPressed: (){
+                              onPressed: () {
                                 //add pdf viewer
-                              }
-                          ),
+                              }),
                         )
                       ],
                     ),

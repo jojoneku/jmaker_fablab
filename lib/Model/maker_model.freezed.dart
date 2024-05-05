@@ -20,17 +20,29 @@ MakerModel _$MakerModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MakerModel {
+  @HiveField(0)
   String get uid => throw _privateConstructorUsedError;
+  @HiveField(1)
   String get firstName => throw _privateConstructorUsedError;
+  @HiveField(2)
   String get middleInitial => throw _privateConstructorUsedError;
+  @HiveField(3)
   String get lastName => throw _privateConstructorUsedError;
+  @HiveField(4)
   String get affiliation => throw _privateConstructorUsedError;
+  @HiveField(5)
   String get contactNumber => throw _privateConstructorUsedError;
+  @HiveField(6)
   String get userType => throw _privateConstructorUsedError;
+  @HiveField(7)
   String get companyName => throw _privateConstructorUsedError;
+  @HiveField(8)
   String get email => throw _privateConstructorUsedError;
+  @HiveField(9)
   String get gender => throw _privateConstructorUsedError;
+  @HiveField(10)
   String get minority => throw _privateConstructorUsedError;
+  @HiveField(11)
   bool get isAgreedToTermsOfUse => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -46,18 +58,18 @@ abstract class $MakerModelCopyWith<$Res> {
       _$MakerModelCopyWithImpl<$Res, MakerModel>;
   @useResult
   $Res call(
-      {String uid,
-      String firstName,
-      String middleInitial,
-      String lastName,
-      String affiliation,
-      String contactNumber,
-      String userType,
-      String companyName,
-      String email,
-      String gender,
-      String minority,
-      bool isAgreedToTermsOfUse});
+      {@HiveField(0) String uid,
+      @HiveField(1) String firstName,
+      @HiveField(2) String middleInitial,
+      @HiveField(3) String lastName,
+      @HiveField(4) String affiliation,
+      @HiveField(5) String contactNumber,
+      @HiveField(6) String userType,
+      @HiveField(7) String companyName,
+      @HiveField(8) String email,
+      @HiveField(9) String gender,
+      @HiveField(10) String minority,
+      @HiveField(11) bool isAgreedToTermsOfUse});
 }
 
 /// @nodoc
@@ -148,18 +160,18 @@ abstract class _$$MakerModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String uid,
-      String firstName,
-      String middleInitial,
-      String lastName,
-      String affiliation,
-      String contactNumber,
-      String userType,
-      String companyName,
-      String email,
-      String gender,
-      String minority,
-      bool isAgreedToTermsOfUse});
+      {@HiveField(0) String uid,
+      @HiveField(1) String firstName,
+      @HiveField(2) String middleInitial,
+      @HiveField(3) String lastName,
+      @HiveField(4) String affiliation,
+      @HiveField(5) String contactNumber,
+      @HiveField(6) String userType,
+      @HiveField(7) String companyName,
+      @HiveField(8) String email,
+      @HiveField(9) String gender,
+      @HiveField(10) String minority,
+      @HiveField(11) bool isAgreedToTermsOfUse});
 }
 
 /// @nodoc
@@ -241,48 +253,61 @@ class __$$MakerModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
+@HiveType(typeId: 1, adapterName: 'MakerModelAdapter')
 class _$MakerModelImpl implements _MakerModel {
   const _$MakerModelImpl(
-      {required this.uid,
-      required this.firstName,
-      required this.middleInitial,
-      required this.lastName,
-      required this.affiliation,
-      required this.contactNumber,
-      required this.userType,
-      required this.companyName,
-      required this.email,
-      required this.gender,
-      required this.minority,
-      this.isAgreedToTermsOfUse = true});
+      {@HiveField(0) required this.uid,
+      @HiveField(1) required this.firstName,
+      @HiveField(2) required this.middleInitial,
+      @HiveField(3) required this.lastName,
+      @HiveField(4) required this.affiliation,
+      @HiveField(5) required this.contactNumber,
+      @HiveField(6) required this.userType,
+      @HiveField(7) required this.companyName,
+      @HiveField(8) required this.email,
+      @HiveField(9) required this.gender,
+      @HiveField(10) required this.minority,
+      @HiveField(11) this.isAgreedToTermsOfUse = true});
 
   factory _$MakerModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$MakerModelImplFromJson(json);
 
   @override
+  @HiveField(0)
   final String uid;
   @override
+  @HiveField(1)
   final String firstName;
   @override
+  @HiveField(2)
   final String middleInitial;
   @override
+  @HiveField(3)
   final String lastName;
   @override
+  @HiveField(4)
   final String affiliation;
   @override
+  @HiveField(5)
   final String contactNumber;
   @override
+  @HiveField(6)
   final String userType;
   @override
+  @HiveField(7)
   final String companyName;
   @override
+  @HiveField(8)
   final String email;
   @override
+  @HiveField(9)
   final String gender;
   @override
+  @HiveField(10)
   final String minority;
   @override
   @JsonKey()
+  @HiveField(11)
   final bool isAgreedToTermsOfUse;
 
   @override
@@ -351,45 +376,57 @@ class _$MakerModelImpl implements _MakerModel {
 
 abstract class _MakerModel implements MakerModel {
   const factory _MakerModel(
-      {required final String uid,
-      required final String firstName,
-      required final String middleInitial,
-      required final String lastName,
-      required final String affiliation,
-      required final String contactNumber,
-      required final String userType,
-      required final String companyName,
-      required final String email,
-      required final String gender,
-      required final String minority,
-      final bool isAgreedToTermsOfUse}) = _$MakerModelImpl;
+      {@HiveField(0) required final String uid,
+      @HiveField(1) required final String firstName,
+      @HiveField(2) required final String middleInitial,
+      @HiveField(3) required final String lastName,
+      @HiveField(4) required final String affiliation,
+      @HiveField(5) required final String contactNumber,
+      @HiveField(6) required final String userType,
+      @HiveField(7) required final String companyName,
+      @HiveField(8) required final String email,
+      @HiveField(9) required final String gender,
+      @HiveField(10) required final String minority,
+      @HiveField(11) final bool isAgreedToTermsOfUse}) = _$MakerModelImpl;
 
   factory _MakerModel.fromJson(Map<String, dynamic> json) =
       _$MakerModelImpl.fromJson;
 
   @override
+  @HiveField(0)
   String get uid;
   @override
+  @HiveField(1)
   String get firstName;
   @override
+  @HiveField(2)
   String get middleInitial;
   @override
+  @HiveField(3)
   String get lastName;
   @override
+  @HiveField(4)
   String get affiliation;
   @override
+  @HiveField(5)
   String get contactNumber;
   @override
+  @HiveField(6)
   String get userType;
   @override
+  @HiveField(7)
   String get companyName;
   @override
+  @HiveField(8)
   String get email;
   @override
+  @HiveField(9)
   String get gender;
   @override
+  @HiveField(10)
   String get minority;
   @override
+  @HiveField(11)
   bool get isAgreedToTermsOfUse;
   @override
   @JsonKey(ignore: true)

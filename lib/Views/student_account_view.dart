@@ -1,7 +1,11 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:jmaker_fablab/Controller/auth_controller.dart';
+import 'package:jmaker_fablab/Controller/firestore_controller.dart';
 import 'package:jmaker_fablab/Controller/snackbar_controller.dart';
+import 'package:jmaker_fablab/Model/student_model.dart';
 import 'package:jmaker_fablab/styles/text_style.dart';
 import 'package:jmaker_fablab/styles/buttons.dart';
 import 'package:jmaker_fablab/styles/color.dart';
@@ -9,7 +13,9 @@ import 'package:jmaker_fablab/styles/formStyles.dart';
 
 @RoutePage()
 class StudentAccountView extends StatefulWidget {
-  const StudentAccountView({super.key});
+  const StudentAccountView({super.key, this.userData});
+
+  final StudentModel? userData;
 
   @override
   State<StudentAccountView> createState() => _StudentAccountViewState();
@@ -28,23 +34,26 @@ class _StudentAccountViewState extends State<StudentAccountView> {
   late TextEditingController _passwordController;
   late TextEditingController _confirmPasswordController;
 
-  List<String> gender = ['Male', 'Female', 'LGBTQ+', 'Prefer not to Say'];
-  List<String> minority = ['Youth', 'PWD', 'Senior Citizen+'];
-  String selectedGender = 'Male';
-  String selectedMinority = 'Youth';
+  late String selectedGender;
+  late String selectedMinority;
+
+  final List<String> gender = ['Male', 'Female', 'LGBTQ+', 'Prefer not to Say'];
+  final List<String> minority = ['Youth', 'PWD', 'Senior Citizen+'];
   bool isChecked = false;
   bool isLoading = false;
 
   @override
   void initState() {
-    _firstNameController = TextEditingController();
-    _middeInitialController = TextEditingController();
-    _lastNameController = TextEditingController();
-    _studentIdController = TextEditingController();
-    _contactNumberController = TextEditingController();
-    _academeController = TextEditingController();
-    _academicProgramController = TextEditingController();
-    _universityEmailController = TextEditingController();
+    selectedGender = widget.userData?.gender ?? 'Male';
+    selectedMinority = widget.userData?.minority ?? 'Youth';
+    _firstNameController = TextEditingController(text: widget.userData?.firstName);
+    _middeInitialController = TextEditingController(text: widget.userData?.middleInitial);
+    _lastNameController = TextEditingController(text: widget.userData?.lastName);
+    _studentIdController = TextEditingController(text: widget.userData?.studentId);
+    _contactNumberController = TextEditingController(text: widget.userData?.contactNumber);
+    _academeController = TextEditingController(text: widget.userData?.academe);
+    _academicProgramController = TextEditingController(text: widget.userData?.academicProgram);
+    _universityEmailController = TextEditingController(text: widget.userData?.universityEmail);
     _passwordController = TextEditingController();
     _confirmPasswordController = TextEditingController();
     super.initState();
@@ -105,11 +114,11 @@ class _StudentAccountViewState extends State<StudentAccountView> {
                           child: Column(
                             children: [
                               Text(
-                                'Signing Up as a Student',
+                                widget.userData != null ? 'My Profile' : 'Signing Up as a Student',
                                 style: CustomTextStyle.boldHeader,
                               ),
                               Text(
-                                "Let's build your profile now!",
+                                "Let's ${widget.userData != null ? 'edit' : 'build'} your profile now!",
                                 style: CustomTextStyle.secondaryGrey,
                               ),
                             ],
@@ -277,6 +286,7 @@ class _StudentAccountViewState extends State<StudentAccountView> {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 16),
                     child: TextFormField(
+                      enabled: widget.userData == null,
                       controller: _universityEmailController,
                       keyboardType: TextInputType.emailAddress,
                       decoration: CustomFormDecoration(
@@ -349,66 +359,68 @@ class _StudentAccountViewState extends State<StudentAccountView> {
                     ],
                   ),
                   const SizedBox(height: 16),
-                  const Align(alignment: Alignment.topLeft, child: Text('Credentials')),
-                  const Divider(),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 16),
-                    child: TextFormField(
-                      controller: _passwordController,
-                      decoration: CustomFormDecoration(
-                        borderColor: secondGrey,
-                        focusedBorderColor: mainYellow,
-                        labelText: 'Password',
-                        hintText: 'Enter Password',
-                      ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Required';
-                        }
-                        return null;
-                      },
+                  if (widget.userData == null) ...[
+                    const Align(alignment: Alignment.topLeft, child: Text('Credentials')),
+                    const Divider(),
+                    const SizedBox(
+                      height: 16,
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 16),
-                    child: TextFormField(
-                      controller: _confirmPasswordController,
-                      decoration: CustomFormDecoration(
-                        borderColor: secondGrey,
-                        focusedBorderColor: mainYellow,
-                        labelText: 'Confirm Password',
-                      ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Required';
-                        }
-                        return null;
-                      },
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      Checkbox(
-                        value: isChecked, // Current state of the checkbox
-                        onChanged: (bool? value) {
-                          setState(() {
-                            // Update state when checkbox is tapped
-                            isChecked = value!;
-                          });
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 16),
+                      child: TextFormField(
+                        controller: _passwordController,
+                        decoration: CustomFormDecoration(
+                          borderColor: secondGrey,
+                          focusedBorderColor: mainYellow,
+                          labelText: 'Password',
+                          hintText: 'Enter Password',
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Required';
+                          }
+                          return null;
                         },
                       ),
-                      Expanded(
-                        child: Text(
-                          'By signing up, you agree to our Terms of Use which explains '
-                          'how we collect, use, and store your personal information.',
-                          style: CustomTextStyle.primaryBlack,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 16),
+                      child: TextFormField(
+                        controller: _confirmPasswordController,
+                        decoration: CustomFormDecoration(
+                          borderColor: secondGrey,
+                          focusedBorderColor: mainYellow,
+                          labelText: 'Confirm Password',
                         ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Required';
+                          }
+                          return null;
+                        },
                       ),
-                    ],
-                  ),
+                    ),
+                    Row(
+                      children: [
+                        Checkbox(
+                          value: isChecked, // Current state of the checkbox
+                          onChanged: (bool? value) {
+                            setState(() {
+                              // Update state when checkbox is tapped
+                              isChecked = value!;
+                            });
+                          },
+                        ),
+                        Expanded(
+                          child: Text(
+                            'By signing up, you agree to our Terms of Use which explains '
+                            'how we collect, use, and store your personal information.',
+                            style: CustomTextStyle.primaryBlack,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                   const SizedBox(height: 16),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(16, 0, 8, 16),
@@ -416,29 +428,64 @@ class _StudentAccountViewState extends State<StudentAccountView> {
                       child: ElevatedButton(
                         style: longYellow,
                         onPressed: () async {
-                          if ((_formKey.currentState?.validate() ?? false) && !isChecked) {
-                            SnackBarController.clearSnackbars(context);
-                            return SnackBarController.showSnackBar(context, 'Please agree to Terms of Use to continue signing up.');
-                          }
+                          if (widget.userData != null) {
+                            if (_formKey.currentState?.validate() ?? false) {
+                              setState(() => isLoading = true);
+                              final StudentModel studentModel = widget.userData!.copyWith(
+                                uid: widget.userData!.uid,
+                                academe: _academeController.text,
+                                academicProgram: _academicProgramController.text,
+                                contactNumber: _contactNumberController.text,
+                                firstName: _firstNameController.text,
+                                lastName: _lastNameController.text,
+                                middleInitial: _middeInitialController.text,
+                                studentId: _studentIdController.text,
+                                universityEmail: _universityEmailController.text,
+                                gender: selectedGender,
+                                minority: selectedMinority,
+                                isAgreedToTermsOfUse: true,
+                              );
 
-                          if ((_formKey.currentState?.validate() ?? false) && isChecked) {
-                            setState(() => isLoading = true);
-                            await AuthController().signUpStudent(
-                              context,
-                              academe: _academeController.text,
-                              academicProgram: _academicProgramController.text,
-                              contactNumber: _contactNumberController.text,
-                              firstName: _firstNameController.text,
-                              lastName: _lastNameController.text,
-                              middleInitial: _middeInitialController.text,
-                              password: _passwordController.text,
-                              studentId: _studentIdController.text,
-                              universityEmail: _universityEmailController.text,
-                              gender: selectedGender,
-                              minority: selectedMinority,
-                            );
+                              final encryptedQRValue = await FirestoreController().addOrEditStudentDetails(
+                                context,
+                                studentModel,
+                                isEdit: true,
+                              );
 
-                            setState(() => isLoading = false);
+                              if (encryptedQRValue != null) {
+                                SnackBarController.showSnackBar(context, 'Profile saved successfully');
+                                context.router.maybePop();
+                              } else {
+                                SnackBarController.showSnackBar(context, 'We are unable to process your request. Please try again later');
+                              }
+
+                              setState(() => isLoading = false);
+                            }
+                          } else {
+                            if ((_formKey.currentState?.validate() ?? false) && !isChecked) {
+                              SnackBarController.clearSnackbars(context);
+                              return SnackBarController.showSnackBar(context, 'Please agree to Terms of Use to continue signing up.');
+                            }
+
+                            if ((_formKey.currentState?.validate() ?? false) && isChecked) {
+                              setState(() => isLoading = true);
+                              await AuthController().signUpStudent(
+                                context,
+                                academe: _academeController.text,
+                                academicProgram: _academicProgramController.text,
+                                contactNumber: _contactNumberController.text,
+                                firstName: _firstNameController.text,
+                                lastName: _lastNameController.text,
+                                middleInitial: _middeInitialController.text,
+                                password: _passwordController.text,
+                                studentId: _studentIdController.text,
+                                universityEmail: _universityEmailController.text,
+                                gender: selectedGender,
+                                minority: selectedMinority,
+                              );
+
+                              setState(() => isLoading = false);
+                            }
                           }
                         }, //attach navigation
                         child: isLoading
@@ -446,7 +493,7 @@ class _StudentAccountViewState extends State<StudentAccountView> {
                                 child: CircularProgressIndicator.adaptive(),
                               )
                             : Text(
-                                'Sign Up and Generate QR Code.',
+                                widget.userData != null ? 'Save and Generate QR Code' : 'Sign Up and Generate QR Code.',
                                 style: CustomTextStyle.primaryBlack,
                               ),
                       ),

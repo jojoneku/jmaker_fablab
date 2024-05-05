@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:jmaker_fablab/styles/color.dart';
 import 'text_style.dart';
 
-
-
 final ButtonStyle yellowPrimary = ElevatedButton.styleFrom(
-minimumSize: const Size(172, 48),
+  minimumSize: const Size(172, 48),
   backgroundColor: mainYellow,
   elevation: 1,
 );
@@ -13,6 +11,12 @@ minimumSize: const Size(172, 48),
 final ButtonStyle greyPrimary = ElevatedButton.styleFrom(
   minimumSize: const Size(172, 48),
   backgroundColor: secondGrey,
+  elevation: 1,
+);
+
+final ButtonStyle logout = ElevatedButton.styleFrom(
+  minimumSize: const Size(172, 48),
+  backgroundColor: Colors.red,
   elevation: 1,
 );
 
@@ -31,9 +35,10 @@ final ButtonStyle longwhite = ElevatedButton.styleFrom(
 class dashboardButton extends StatelessWidget {
   final String text;
   final String imagePath;
-  final VoidCallback onPressed;// Optional custom ButtonStyle
+  final VoidCallback onPressed; // Optional custom ButtonStyle
 
   const dashboardButton({
+    super.key,
     required this.text,
     required this.imagePath,
     required this.onPressed, // Optional custom ButtonStyle
@@ -69,7 +74,6 @@ class dashboardButton extends StatelessWidget {
               ],
             ),
             // Apply custom button style if provided
-
           ),
         ),
       ),
@@ -86,7 +90,7 @@ final ButtonStyle manualsButton = ElevatedButton.styleFrom(
   ),
 );
 
- // Import your custom text styles
+// Import your custom text styles
 class MachineButton extends StatelessWidget {
   final IconData icon;
   final String title;
@@ -94,6 +98,7 @@ class MachineButton extends StatelessWidget {
   final VoidCallback onPressed;
 
   const MachineButton({
+    super.key,
     required this.icon,
     required this.title,
     required this.subtitle,
@@ -115,7 +120,7 @@ class MachineButton extends StatelessWidget {
       child: Row(
         children: [
           Icon(icon, size: 40, color: blackGreen), // Use the provided icon
-          SizedBox(width: 16),
+          const SizedBox(width: 16),
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,

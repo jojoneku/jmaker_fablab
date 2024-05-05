@@ -3,6 +3,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:jmaker_fablab/Controller/firestore_controller.dart';
 import 'package:jmaker_fablab/Controller/snackbar_controller.dart';
 import 'package:jmaker_fablab/Model/maker_model.dart';
@@ -57,11 +58,15 @@ class AuthController extends ControllerMVC {
           minority: minority,
         );
 
-        await FirestoreController().addStudentDetails(context, studentModel);
+        final encryptedQRValue = await FirestoreController().addOrEditStudentDetails(context, studentModel);
+        print(encryptedQRValue);
+        if (encryptedQRValue != null) {
+          SnackBarController.showSnackBar(context, 'Sign up Successful! Check inbox for email verification');
 
-        SnackBarController.showSnackBar(context, 'Sign up Successful! Check inbox for email verification');
-        //TODO  generate qr code later
-        context.router.replaceAll([const StudentQRRoute()]); //TODO pass qr code
+          context.router.replaceAll([StudentQRRoute(name: studentModel.fullName, data: encryptedQRValue)]);
+        } else {
+          SnackBarController.showSnackBar(context, 'We are unable to process your request. Please try again later');
+        }
       } else {
         SnackBarController.showSnackBar(context, 'Something went wrong. Please try again later');
       }
@@ -115,11 +120,15 @@ class AuthController extends ControllerMVC {
           isAgreedToTermsOfUse: true,
         );
 
-        await FirestoreController().addMakerDetails(context, makerModel);
+        final encryptedQRValue = await FirestoreController().addOrEditMakerDetails(context, makerModel);
 
-        SnackBarController.showSnackBar(context, 'Sign up Successful! Check inbox for email verification');
-        //TODO  generate qr code later
-        context.router.replaceAll([const MakerQRRoute()]); //TODO pass qr code
+        if (encryptedQRValue != null) {
+          SnackBarController.showSnackBar(context, 'Sign up Successful! Check inbox for email verification');
+
+          context.router.replaceAll([MakerQRRoute(name: makerModel.fullName, data: encryptedQRValue)]);
+        } else {
+          SnackBarController.showSnackBar(context, 'We are unable to process your request. Please try again later');
+        }
       } else {
         SnackBarController.showSnackBar(context, 'Something went wrong. Please try again later');
       }
@@ -137,15 +146,24 @@ class AuthController extends ControllerMVC {
   }
 
   //* Send email verification
-  Future<void> sendEmailVerification(context) async {
+  Future<void> sendEmailVerification(context, {bool isResend = false}) async {
     FirebaseAuth auth = FirebaseAuth.instance;
     try {
       User? user = auth.currentUser;
 
       if (user != null) {
         await user.sendEmailVerification();
+
+        if (isResend) {
+          SnackBarController.clearSnackbars(context);
+          SnackBarController.showSnackBar(context, 'Account Verification sent. Check inbox to verify your account.');
+        }
       } else {
         SnackBarController.showSnackBar(context, 'Something went wrong. Please try again later');
+      }
+    } on FirebaseException catch (error) {
+      if (error.code == 'too-many-requests') {
+        SnackBarController.showSnackBar(context, 'We are unable to process your request due to multiple request. Please try again later.');
       }
     } catch (e) {
       SnackBarController.showSnackBar(context, 'Something went wrong (${e.toString()}). Please try again later');
@@ -166,11 +184,23 @@ class AuthController extends ControllerMVC {
 
       if (user != null && user.emailVerified) {
         SnackBarController.showSnackBar(context, 'Login Successful!');
+
+        final userData = await FirestoreController().getUserDetailsById(context, user.uid);
+        if (userData is StudentModel) {
+          Hive.box('userData').add(userData);
+        } else {
+          Hive.box('userData').add(userData as MakerModel);
+        }
+
         context.router.replaceAll([const DashBoardRoute()]);
       } else {
         try {
-          await sendEmailVerification(context);
-          SnackBarController.showSnackBar(context, 'Account not verified. Please check your email for verification.');
+          SnackBarController.showSnackBarWithActionButton(
+            context,
+            text: 'Account not verified. Please check your email for verification.',
+            onPressed: () => sendEmailVerification(context, isResend: true),
+            buttonLabel: 'Resend',
+          );
         } catch (error) {
           SnackBarController.showSnackBar(context, error.toString());
         }
@@ -198,7 +228,7 @@ class AuthController extends ControllerMVC {
     FirebaseAuth auth = FirebaseAuth.instance;
     try {
       await auth.signOut();
-
+      Hive.box('userData').clear();
       context.router.replaceAll([const LandingRoute()]);
     } catch (e) {
       SnackBarController.showSnackBar(context, 'Something went wrong. Please try again later');

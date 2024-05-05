@@ -1,12 +1,14 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:jmaker_fablab/styles/color.dart';
 import 'package:jmaker_fablab/styles/text_style.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
-import '../../styles/buttons.dart';
-import 'NoContent.dart';
 
-class F3DScanner extends StatelessWidget {
-  const F3DScanner({super.key});
+import '../../styles/buttons.dart';
+
+@RoutePage()
+class MCNCMillingView extends StatelessWidget {
+  const MCNCMillingView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,8 @@ class F3DScanner extends StatelessWidget {
           icon: const Icon(
             Icons.chevron_left_outlined,
             color: blackGreen,
-            size: 24,),
+            size: 24,
+          ),
           onPressed: () {
             Navigator.of(context).pop();
           },
@@ -32,8 +35,8 @@ class F3DScanner extends StatelessWidget {
             children: [
               SizedBox(
                 width: MediaQuery.of(context).size.width,
-                height: 200, // Define the height for the image
-                child: Image.asset('assets/images/HD_Shining 3D Einscan SP Scanner.png'),
+                height: 230, // Define the height for the image
+                child: Image.asset('assets/images/HD_MDX 40A.jpg'),
               ),
               Padding(
                 padding: const EdgeInsets.all(16.0),
@@ -44,21 +47,21 @@ class F3DScanner extends StatelessWidget {
                         const Divider(),
                         Row(
                           children: [
-                            Container(
+                            SizedBox(
                               width: 100,
                               height: 80,
-                              child: Image.asset('assets/images/Y_SCANNER.png'),
+                              child: Image.asset('assets/images/Y_CNC.png'),
                             ),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Einscan - SP V2',
+                                  'Roland MDX-40A',
                                   style: CustomTextStyle.bigTitle,
                                 ),
                                 Text(
-                                  '3D Scanning Machine',
+                                  'CNC Milling Machine',
                                   style: CustomTextStyle.secondaryGrey,
                                 ),
                               ],
@@ -66,29 +69,25 @@ class F3DScanner extends StatelessWidget {
                           ],
                         ),
                         const SizedBox(height: 8),
-                        Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.only(right: 8.0, left: 24),
-                                  child: Container(
-                                    width: double.infinity,
-                                    child: Text(
-                                      'This desktop 3D scanner utilizes structured light '
-                                          'technology for high-precision object capture. '
-                                          'It employs a dual-camera system alongside a projector '
-                                          'to capture detailed scans of various object sizes and '
-                                          'textures. The EinScan SP features user-friendly software, '
-                                          'making it suitable for professionals in product design, '
-                                          'quality control, and reverse engineering who require '
-                                          'accurate digital representations of physical objects.',
-                                      style: CustomTextStyle.secondaryGrey,
-                                    ),
-                                  ),
+                        Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 8.0, left: 24),
+                              child: SizedBox(
+                                width: double.infinity,
+                                child: Text(
+                                  'The Roland MDX-40A is a compact and user-friendly desktop '
+                                  'CNC milling machine. It allows designers, engineers, and '
+                                  'students to create precision 3D models and prototypes '
+                                  'from various non-proprietary materials like plastic, resin,'
+                                  ' and wood. Its small footprint makes it ideal for workshops, '
+                                  'classrooms, and even offices.',
+                                  style: CustomTextStyle.secondaryGrey,
                                 ),
                               ),
-                            ]),
+                            ),
+                          ),
+                        ]),
                         const SizedBox(height: 8),
                         Padding(
                           padding: const EdgeInsets.only(top: 8, bottom: 8, left: 16, right: 16),
@@ -97,18 +96,16 @@ class F3DScanner extends StatelessWidget {
                             title: 'Operation Manual',
                             subtitle: 'This comprehensive manual provides \n'
                                 'everything you need to get started.',
-                            onPressed: (){
+                            onPressed: () {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => SfPdfViewer.asset(
-                                    'assets/pdf/0P_3D-SCANNER-OPERATION-_compressed.pdf',
+                                    'assets/pdf/0P_MDX_OPERATION_compressed.pdf',
                                   ),
                                 ),
                               );
-                              //add pdf viewer
                             },
-
                           ),
                         ),
                         Padding(
@@ -118,16 +115,17 @@ class F3DScanner extends StatelessWidget {
                               title: 'Data Making',
                               subtitle: 'Learn how to create the data'
                                   ' your machine \nneeds to operate.',
-                              onPressed: (){
+                              onPressed: () {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => const NoContent(),
+                                    builder: (context) => SfPdfViewer.asset(
+                                      'assets/pdf/DM_Copy of MDX_DATA MAKING_compressed.pdf',
+                                    ),
                                   ),
                                 );
                                 //add pdf viewer
-                              }
-                          ),
+                              }),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 8, bottom: 8, left: 16, right: 16),
@@ -135,18 +133,17 @@ class F3DScanner extends StatelessWidget {
                               icon: Icons.miscellaneous_services_outlined,
                               title: 'Maintenance Manual',
                               subtitle: 'Learn how to maintain the machine.',
-                              onPressed: (){
+                              onPressed: () {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => SfPdfViewer.asset(
-                                      'assets/pdf/MA_MAINTENACE-3D SCANNER_compressed.pdf',
+                                      'assets/pdf/MA_MDX_MAINTENANCE_compressed.pdf',
                                     ),
                                   ),
                                 );
                                 //add pdf viewer
-                              }
-                          ),
+                              }),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 8, bottom: 8, left: 16, right: 16),
@@ -155,10 +152,9 @@ class F3DScanner extends StatelessWidget {
                               title: 'Video Tutorials',
                               subtitle: 'Visual Learner? Learn from awesome \n'
                                   'video tutorials!',
-                              onPressed: (){
+                              onPressed: () {
                                 //add pdf viewer
-                              }
-                          ),
+                              }),
                         )
                       ],
                     ),

@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:jmaker_fablab/styles/color.dart';
 import 'package:jmaker_fablab/styles/text_style.dart';
@@ -5,8 +6,9 @@ import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 import '../../styles/buttons.dart';
 
-class Embroidery extends StatelessWidget {
-  const Embroidery({super.key});
+@RoutePage()
+class MEmbroideryView extends StatelessWidget {
+  const MEmbroideryView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,8 @@ class Embroidery extends StatelessWidget {
           icon: const Icon(
             Icons.chevron_left_outlined,
             color: blackGreen,
-            size: 24,),
+            size: 24,
+          ),
           onPressed: () {
             Navigator.of(context).pop();
           },
@@ -44,7 +47,7 @@ class Embroidery extends StatelessWidget {
                         const Divider(),
                         Row(
                           children: [
-                            Container(
+                            SizedBox(
                               width: 100,
                               height: 60,
                               child: Image.asset('assets/images/Y_EMBROIDERY.png'),
@@ -66,27 +69,25 @@ class Embroidery extends StatelessWidget {
                           ],
                         ),
                         const SizedBox(height: 8),
-                        Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.only(right: 8.0, left: 24),
-                                  child: Container(
-                                    width: double.infinity,
-                                    child: Text(
-                                      'The Brother PR1000e is a 10-needle embroidery machine for detailed, '
-                                          'multi-colored designs.  Automatic features and built-in designs '
-                                          'make it ideal for both hobbyists and professionals. Its advanced '
-                                          'features include automatic needle threading, innovative camera '
-                                          'technology for precise needle positioning, and built-in designs '
-                                          'for added versatility.',
-                                      style: CustomTextStyle.secondaryGrey,
-                                    ),
-                                  ),
+                        Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 8.0, left: 24),
+                              child: SizedBox(
+                                width: double.infinity,
+                                child: Text(
+                                  'The Brother PR1000e is a 10-needle embroidery machine for detailed, '
+                                  'multi-colored designs.  Automatic features and built-in designs '
+                                  'make it ideal for both hobbyists and professionals. Its advanced '
+                                  'features include automatic needle threading, innovative camera '
+                                  'technology for precise needle positioning, and built-in designs '
+                                  'for added versatility.',
+                                  style: CustomTextStyle.secondaryGrey,
                                 ),
                               ),
-                            ]),
+                            ),
+                          ),
+                        ]),
                         const SizedBox(height: 8),
                         Padding(
                           padding: const EdgeInsets.only(top: 8, bottom: 8, left: 16, right: 16),
@@ -95,7 +96,7 @@ class Embroidery extends StatelessWidget {
                             title: 'Operation Manual',
                             subtitle: 'This comprehensive manual provides \n'
                                 'everything you need to get started.',
-                            onPressed: (){
+                            onPressed: () {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -105,7 +106,6 @@ class Embroidery extends StatelessWidget {
                                 ),
                               );
                             },
-          
                           ),
                         ),
                         Padding(
@@ -115,7 +115,7 @@ class Embroidery extends StatelessWidget {
                               title: 'Data Making',
                               subtitle: 'Learn how to create the data'
                                   ' your machine \nneeds to operate.',
-                              onPressed: (){
+                              onPressed: () {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -125,8 +125,7 @@ class Embroidery extends StatelessWidget {
                                   ),
                                 );
                                 //add pdf viewer
-                              }
-                          ),
+                              }),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 8, bottom: 8, left: 16, right: 16),
@@ -134,7 +133,7 @@ class Embroidery extends StatelessWidget {
                               icon: Icons.miscellaneous_services_outlined,
                               title: 'Maintenance Manual',
                               subtitle: 'Learn how to maintain the machine.',
-                              onPressed: (){
+                              onPressed: () {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -144,8 +143,7 @@ class Embroidery extends StatelessWidget {
                                   ),
                                 );
                                 //add pdf viewer
-                              }
-                          ),
+                              }),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 8, bottom: 8, left: 16, right: 16),
@@ -154,10 +152,9 @@ class Embroidery extends StatelessWidget {
                               title: 'Video Tutorials',
                               subtitle: 'Visual Learner? Learn from awesome \n'
                                   'video tutorials!',
-                              onPressed: (){
+                              onPressed: () {
                                 //add pdf viewer
-                              }
-                          ),
+                              }),
                         )
                       ],
                     ),
