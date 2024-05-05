@@ -1,22 +1,37 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:jmaker_fablab/Model/maker_model.dart';
+import 'package:jmaker_fablab/Model/student_model.dart';
+import 'package:jmaker_fablab/firebase_options.dart';
+import 'package:jmaker_fablab/routes/app_router.dart';
 
-import 'Views/landingPage.dart';
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  Hive.openBox('userData');
+  Hive.registerAdapter(StudentModelAdapter());
+  Hive.registerAdapter(MakerModelAdapter());
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
-
-void main() {
-  runApp(const Home());
+  runApp(App());
 }
-class Home extends StatelessWidget {
-  const Home({super.key});
+
+class App extends StatelessWidget {
+  App({super.key});
+
+  final _appRouter = AppRouter();
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
+    return MaterialApp.router(
       theme: ThemeData(
         fontFamily: 'Nunito',
-        visualDensity: VisualDensity.adaptivePlatformDensity,),
-      home: LandingPage(),
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      routerConfig: _appRouter.config(),
     );
   }
 }

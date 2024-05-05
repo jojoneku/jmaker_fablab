@@ -1,19 +1,17 @@
-
 import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:jmaker_fablab/Model/counter_page_model.dart';
-class Controller extends ControllerMVC {
-  factory Controller() {
-    if (_this == null) _this = Controller._();
-    return _this;
-  }
-  static Controller _this = Controller._();
-  Controller._();
 
-  int get counter => counter_model.counter;
-  void increment(){
-    counter_model.increment();
+class Controller extends ControllerMVC {
+  factory Controller() => _this ??= Controller._();
+  Controller._();
+  static Controller? _this;
+
+  int get counter => CounterModel.counter;
+  void increment() {
+    CounterModel.increment();
   }
-  void decrement(){
-    counter_model.decrement();
+
+  void decrement() {
+    CounterModel.decrement();
   }
 }
