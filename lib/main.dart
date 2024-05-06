@@ -10,6 +10,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   Hive.openBox('userData');
+  Hive.openBox('userCredentials');
   Hive.registerAdapter(StudentModelAdapter());
   Hive.registerAdapter(MakerModelAdapter());
   await Firebase.initializeApp(

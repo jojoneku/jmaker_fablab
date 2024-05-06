@@ -30,9 +30,8 @@ class FirestoreController extends ControllerMVC {
       }
       final encodedModel = jsonEncode(studentModel.toJson());
       final encrypted = EncryptUtils.encrypt(studentModel.uid, encodedModel);
-      // final decrypt = EncryptUtils.decrypt(studentModel.uid, encrypted.base64);
 
-      return encrypted.base64;
+      return '${studentModel.uid}${encrypted.base64}';
     } catch (e) {
       SnackBarController.showSnackBar(context, e.toString());
 
@@ -52,7 +51,7 @@ class FirestoreController extends ControllerMVC {
       }
       final encodedModel = jsonEncode(makerModel.toJson());
       final encrypted = EncryptUtils.encrypt(makerModel.uid, encodedModel);
-      // final decrypt = EncryptUtils.decrypt(studentModel.uid, encrypted.base64);
+
       return encrypted.base64;
     } catch (e) {
       SnackBarController.showSnackBar(context, e.toString());

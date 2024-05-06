@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:jmaker_fablab/routes/app_router.gr.dart';
 import 'package:jmaker_fablab/styles/botnavbarwidget.dart';
 
-//TODO dashboard integration [functions/methods/profiling]
 @RoutePage()
 class DashBoardView extends StatelessWidget {
   const DashBoardView({super.key});

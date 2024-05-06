@@ -12,6 +12,7 @@ import 'package:jmaker_fablab/Controller/snackbar_controller.dart';
 import 'package:jmaker_fablab/Model/maker_model.dart';
 import 'package:jmaker_fablab/Model/student_model.dart';
 import 'package:jmaker_fablab/Utils/encryt_utils.dart';
+import 'package:jmaker_fablab/Views/internet_connection_checker.dart';
 import 'package:jmaker_fablab/styles/color.dart';
 import 'package:jmaker_fablab/styles/text_style.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -62,95 +63,101 @@ class _QRViewState extends State<QRView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: mainYellow,
-      body: SafeArea(
-        child: ValueListenableBuilder(
-          valueListenable: Hive.box('userData').listenable(),
-          builder: (context, value, child) {
-            final userData = value.values.first;
+    return InternetConnectionChecker(
+      child: (_) => Scaffold(
+        backgroundColor: mainYellow,
+        body: SafeArea(
+          child: ValueListenableBuilder(
+            valueListenable: Hive.box('userData').listenable(),
+            builder: (context, value, child) {
+              if (value.isEmpty || !value.isOpen) {
+                return const SizedBox.shrink();
+              }
 
-            String? qrData;
+              final userData = value.values.first;
 
-            if (userData is StudentModel || userData is MakerModel) {
-              final encodedModel = jsonEncode(userData);
-              final encrypted = EncryptUtils.encrypt(userData.uid, encodedModel);
-              qrData = encrypted.base64;
-            }
+              String? qrData;
 
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  RepaintBoundary(
-                    key: _qrKey,
-                    child: Container(
-                      width: 350,
-                      height: 350,
-                      decoration: BoxDecoration(
-                        color: whiteBG,
-                        borderRadius: BorderRadius.circular(25),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Image.asset(
-                              'assets/images/JMAKER png-03.png',
-                              height: 24,
+              if (userData is StudentModel || userData is MakerModel) {
+                final encodedModel = jsonEncode(userData);
+                final encrypted = EncryptUtils.encrypt(userData.uid, encodedModel);
+                qrData = encrypted.base64;
+              }
+
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    RepaintBoundary(
+                      key: _qrKey,
+                      child: Container(
+                        width: 350,
+                        height: 350,
+                        decoration: BoxDecoration(
+                          color: whiteBG,
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Image.asset(
+                                'assets/images/JMAKER png-03.png',
+                                height: 24,
+                              ),
                             ),
-                          ),
-                          Expanded(
-                            child: QrImageView(
-                              data: qrData ?? '',
-                              padding: EdgeInsets.zero,
+                            Expanded(
+                              child: QrImageView(
+                                data: qrData ?? '',
+                                padding: EdgeInsets.zero,
+                              ),
                             ),
-                          ),
-                          const SizedBox(height: 16),
-                          Text(
-                            userData is StudentModel
-                                ? userData.fullName
-                                : userData is MakerModel
-                                    ? userData.fullName
-                                    : '',
-                            style: CustomTextStyle.primaryBlack,
-                          ),
-                          Text(
-                            userData is StudentModel ? 'Student' : 'Maker',
-                            style: CustomTextStyle.primaryBlack,
-                          ),
-                          const SizedBox(height: 16),
-                        ],
+                            const SizedBox(height: 16),
+                            Text(
+                              userData is StudentModel
+                                  ? userData.fullName
+                                  : userData is MakerModel
+                                      ? userData.fullName
+                                      : '',
+                              style: CustomTextStyle.primaryBlack,
+                            ),
+                            Text(
+                              userData is StudentModel ? 'Student' : 'Maker',
+                              style: CustomTextStyle.primaryBlack,
+                            ),
+                            const SizedBox(height: 16),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    'Generated QR Code',
-                    style: CustomTextStyle.boldHeader,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      TextButton.icon(
-                        onPressed: _downloadQrCode,
-                        icon: const Icon(
-                          Icons.download,
-                          color: blackGreen,
+                    const SizedBox(height: 16),
+                    Text(
+                      'Generated QR Code',
+                      style: CustomTextStyle.boldHeader,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        TextButton.icon(
+                          onPressed: _downloadQrCode,
+                          icon: const Icon(
+                            Icons.download,
+                            color: blackGreen,
+                          ),
+                          label: Text(
+                            'Download',
+                            style: CustomTextStyle.primaryBlack,
+                          ),
                         ),
-                        label: Text(
-                          'Download',
-                          style: CustomTextStyle.primaryBlack,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            );
-          },
+                      ],
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
         ),
       ),
     );

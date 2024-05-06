@@ -6,6 +6,7 @@ class SnackBarController {
   }
 
   static void showSnackBar(BuildContext context, String text) {
+    clearSnackbars(context);
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         backgroundColor: Colors.grey[700],
