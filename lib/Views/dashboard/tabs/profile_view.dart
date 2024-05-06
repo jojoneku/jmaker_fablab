@@ -237,6 +237,10 @@ class ProfileView extends StatelessWidget {
                                       onPressed: context.router.maybePop,
                                       child: const Text('Cancel'),
                                     ),
+                                    const SafeArea(
+                                      top: false,
+                                      child: SizedBox.shrink(),
+                                    ),
                                   ],
                                 ),
                               );

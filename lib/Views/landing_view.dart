@@ -92,7 +92,11 @@ class LandingView extends StatelessWidget {
                       ),
                     ],
                   ),
-                )
+                ),
+                const SafeArea(
+                  top: false,
+                  child: SizedBox.shrink(),
+                ),
               ],
             ),
           ),

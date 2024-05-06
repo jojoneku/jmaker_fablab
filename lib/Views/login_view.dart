@@ -198,6 +198,10 @@ class _LoginViewState extends State<LoginView> {
                                                     style: CustomTextStyle.primaryBlack,
                                                   ),
                                           ),
+                                          const SafeArea(
+                                            top: false,
+                                            child: SizedBox.shrink(),
+                                          ),
                                         ],
                                       ),
                                     ),
