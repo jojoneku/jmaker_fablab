@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:jmaker_fablab/Views/internet_connection_checker.dart';
 import 'package:jmaker_fablab/styles/text_style.dart';
 
 @RoutePage()
@@ -13,11 +14,11 @@ class AboutFablabView extends StatefulWidget {
 class _AboutFablabViewState extends State<AboutFablabView> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
+    return InternetConnectionChecker(
+      child: (_) => Scaffold(
+        body: SafeArea(
           child: SingleChildScrollView(
+            padding: const EdgeInsets.all(16.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,

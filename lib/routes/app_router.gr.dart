@@ -30,7 +30,7 @@ import 'package:jmaker_fablab/Views/Machines/m_3d_scanner_view.dart' as _i10;
 import 'package:jmaker_fablab/Views/Machines/m_cnc_milling_view.dart' as _i11;
 import 'package:jmaker_fablab/Views/Machines/m_cnc_shopbot_view.dart' as _i12;
 import 'package:jmaker_fablab/Views/Machines/m_embroidery_view.dart' as _i13;
-import 'package:jmaker_fablab/Views/Machines/m_fcc_laser_view.dart' as _i14;
+import 'package:jmaker_fablab/Views/Machines/m_gcc_laser_view.dart' as _i14;
 import 'package:jmaker_fablab/Views/Machines/m_laser_cutting_view.dart' as _i15;
 import 'package:jmaker_fablab/Views/Machines/m_uls_laser_view.dart' as _i16;
 import 'package:jmaker_fablab/Views/Machines/m_vacuum_forming_view.dart'

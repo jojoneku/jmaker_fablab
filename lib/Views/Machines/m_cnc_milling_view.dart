@@ -40,125 +40,117 @@ class MCNCMillingView extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.all(16.0),
-                child: Expanded(
-                  child: Container(
-                    child: Column(
+                child: Column(
+                  children: [
+                    const Divider(),
+                    Row(
                       children: [
-                        const Divider(),
-                        Row(
+                        SizedBox(
+                          width: 100,
+                          height: 80,
+                          child: Image.asset('assets/images/Y_CNC.png'),
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(
-                              width: 100,
-                              height: 80,
-                              child: Image.asset('assets/images/Y_CNC.png'),
+                            Text(
+                              'Roland MDX-40A',
+                              style: CustomTextStyle.bigTitle,
                             ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Roland MDX-40A',
-                                  style: CustomTextStyle.bigTitle,
-                                ),
-                                Text(
-                                  'CNC Milling Machine',
-                                  style: CustomTextStyle.secondaryGrey,
-                                ),
-                              ],
+                            Text(
+                              'CNC Milling Machine',
+                              style: CustomTextStyle.secondaryGrey,
                             ),
                           ],
                         ),
-                        const SizedBox(height: 8),
-                        Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 8.0, left: 24),
-                              child: SizedBox(
-                                width: double.infinity,
-                                child: Text(
-                                  'The Roland MDX-40A is a compact and user-friendly desktop '
-                                  'CNC milling machine. It allows designers, engineers, and '
-                                  'students to create precision 3D models and prototypes '
-                                  'from various non-proprietary materials like plastic, resin,'
-                                  ' and wood. Its small footprint makes it ideal for workshops, '
-                                  'classrooms, and even offices.',
-                                  style: CustomTextStyle.secondaryGrey,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ]),
-                        const SizedBox(height: 8),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 8, bottom: 8, left: 16, right: 16),
-                          child: MachineButton(
-                            icon: Icons.file_copy_outlined,
-                            title: 'Operation Manual',
-                            subtitle: 'This comprehensive manual provides \n'
-                                'everything you need to get started.',
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => SfPdfViewer.asset(
-                                    'assets/pdf/0P_MDX_OPERATION_compressed.pdf',
-                                  ),
-                                ),
-                              );
-                            },
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 8, bottom: 8, left: 16, right: 16),
-                          child: MachineButton(
-                              icon: Icons.data_saver_on,
-                              title: 'Data Making',
-                              subtitle: 'Learn how to create the data'
-                                  ' your machine \nneeds to operate.',
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => SfPdfViewer.asset(
-                                      'assets/pdf/DM_Copy of MDX_DATA MAKING_compressed.pdf',
-                                    ),
-                                  ),
-                                );
-                                //add pdf viewer
-                              }),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 8, bottom: 8, left: 16, right: 16),
-                          child: MachineButton(
-                              icon: Icons.miscellaneous_services_outlined,
-                              title: 'Maintenance Manual',
-                              subtitle: 'Learn how to maintain the machine.',
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => SfPdfViewer.asset(
-                                      'assets/pdf/MA_MDX_MAINTENANCE_compressed.pdf',
-                                    ),
-                                  ),
-                                );
-                                //add pdf viewer
-                              }),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 8, bottom: 8, left: 16, right: 16),
-                          child: MachineButton(
-                              icon: Icons.video_settings,
-                              title: 'Video Tutorials',
-                              subtitle: 'Visual Learner? Learn from awesome \n'
-                                  'video tutorials!',
-                              onPressed: () {
-                                //add pdf viewer
-                              }),
-                        )
                       ],
                     ),
-                  ),
+                    const SizedBox(height: 8),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 8.0, left: 24),
+                      child: Text(
+                        'The Roland MDX-40A is a compact and user-friendly desktop '
+                        'CNC milling machine. It allows designers, engineers, and '
+                        'students to create precision 3D models and prototypes '
+                        'from various non-proprietary materials like plastic, resin,'
+                        ' and wood. Its small footprint makes it ideal for workshops, '
+                        'classrooms, and even offices.',
+                        style: CustomTextStyle.secondaryGrey,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8, bottom: 8, left: 16, right: 16),
+                      child: MachineButton(
+                        icon: Icons.file_copy_outlined,
+                        title: 'Operation Manual',
+                        subtitle: 'This comprehensive manual provides \n'
+                            'everything you need to get started.',
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SfPdfViewer.asset(
+                                'assets/pdf/0P_MDX_OPERATION_compressed.pdf',
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8, bottom: 8, left: 16, right: 16),
+                      child: MachineButton(
+                        icon: Icons.data_saver_on,
+                        title: 'Data Making',
+                        subtitle: 'Learn how to create the data'
+                            ' your machine \nneeds to operate.',
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SfPdfViewer.asset(
+                                'assets/pdf/DM_Copy of MDX_DATA MAKING_compressed.pdf',
+                              ),
+                            ),
+                          );
+                          //add pdf viewer
+                        },
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8, bottom: 8, left: 16, right: 16),
+                      child: MachineButton(
+                        icon: Icons.miscellaneous_services_outlined,
+                        title: 'Maintenance Manual',
+                        subtitle: 'Learn how to maintain the machine.',
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SfPdfViewer.asset(
+                                'assets/pdf/MA_MDX_MAINTENANCE_compressed.pdf',
+                              ),
+                            ),
+                          );
+                          //add pdf viewer
+                        },
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8, bottom: 8, left: 16, right: 16),
+                      child: MachineButton(
+                        icon: Icons.video_settings,
+                        title: 'Video Tutorials',
+                        subtitle: 'Visual Learner? Learn from awesome \n'
+                            'video tutorials!',
+                        onPressed: () {
+                          //add pdf viewer
+                        },
+                      ),
+                    )
+                  ],
                 ),
               ),
             ],

@@ -59,7 +59,7 @@ class AuthController extends ControllerMVC {
         );
 
         final encryptedQRValue = await FirestoreController().addOrEditStudentDetails(context, studentModel);
-        print(encryptedQRValue);
+
         if (encryptedQRValue != null) {
           SnackBarController.showSnackBar(context, 'Sign up Successful! Check inbox for email verification');
 
@@ -170,12 +170,58 @@ class AuthController extends ControllerMVC {
     }
   }
 
+  //* Send password reset email
+  Future<void> sendPasswordResetEmail(context, String email) async {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    try {
+      await auth.sendPasswordResetEmail(email: email);
+      SnackBarController.showSnackBar(context, 'Password reset email has been sent successfully.');
+    } on FirebaseException catch (error) {
+      if (error.code == 'too-many-requests') {
+        SnackBarController.showSnackBar(context, 'We are unable to process your request due to multiple request. Please try again later.');
+      } else if (error.code == 'invalid-email') {
+        SnackBarController.showSnackBar(context, 'Invalid Email provided');
+      } else if (error.code == 'user-not-found') {
+        SnackBarController.showSnackBar(context, 'Account does not exist!');
+      } else {
+        SnackBarController.showSnackBar(context, 'We are unable to process your request at the moment. Please try again later.');
+      }
+    } catch (e) {
+      SnackBarController.showSnackBar(context, 'Something went wrong (${e.toString()}). Please try again later');
+    }
+  }
+
   //* Sign In
   Future<void> signIn(
     BuildContext context, {
     required String email,
     required String password,
+    bool isOfflineMode = false,
   }) async {
+    if (isOfflineMode) {
+      final userCredentials = Hive.box('userCredentials');
+      final bool isUserDataAvailable = userCredentials.isNotEmpty;
+
+      if (isUserDataAvailable) {
+        if (email == userCredentials.get('email') && password == userCredentials.get('pass')) {
+          if (userCredentials.get('isAccountVerified') == true) {
+            return context.router.replaceAll([const DashBoardRoute()]);
+          } else {
+            SnackBarController.showSnackBarWithActionButton(
+              context,
+              text: 'Account not verified. Please check your email for verification and try loggin in with internet access.',
+              onPressed: () => sendEmailVerification(context, isResend: true),
+              buttonLabel: 'Resend',
+            );
+          }
+        } else {
+          return SnackBarController.showSnackBar(context, 'Invalid credential. Please try again');
+        }
+      } else {
+        return SnackBarController.showSnackBar(context, 'Account offline mode does not exist!');
+      }
+    }
+
     FirebaseAuth auth = FirebaseAuth.instance;
     try {
       UserCredential userCredential = await auth.signInWithEmailAndPassword(email: email, password: password);
@@ -191,6 +237,10 @@ class AuthController extends ControllerMVC {
         } else {
           Hive.box('userData').add(userData as MakerModel);
         }
+
+        await Hive.box('userCredentials').put('email', email);
+        await Hive.box('userCredentials').put('pass', password);
+        await Hive.box('userCredentials').put('isAccountVerified', true);
 
         context.router.replaceAll([const DashBoardRoute()]);
       } else {
@@ -224,11 +274,14 @@ class AuthController extends ControllerMVC {
     }
   }
 
-  Future<void> logout(BuildContext context) async {
+  Future<void> logout(BuildContext context, {bool isOfflineMode = false}) async {
     FirebaseAuth auth = FirebaseAuth.instance;
     try {
-      await auth.signOut();
-      Hive.box('userData').clear();
+      if (!isOfflineMode) {
+        await auth.signOut();
+        await Hive.box('userData').clear();
+        await Hive.box('userCredentials').clear();
+      }
       context.router.replaceAll([const LandingRoute()]);
     } catch (e) {
       SnackBarController.showSnackBar(context, 'Something went wrong. Please try again later');
