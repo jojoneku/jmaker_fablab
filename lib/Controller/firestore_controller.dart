@@ -52,7 +52,7 @@ class FirestoreController extends ControllerMVC {
       final encodedModel = jsonEncode(makerModel.toJson());
       final encrypted = EncryptUtils.encrypt(makerModel.uid, encodedModel);
 
-      return encrypted.base64;
+      return '${makerModel.uid}${encrypted.base64}';
     } catch (e) {
       SnackBarController.showSnackBar(context, e.toString());
       return null;

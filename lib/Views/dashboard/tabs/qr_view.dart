@@ -6,7 +6,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:jmaker_fablab/Controller/snackbar_controller.dart';
 import 'package:jmaker_fablab/Model/maker_model.dart';
@@ -54,7 +53,6 @@ class _QRViewState extends State<QRView> {
       SnackBarController.clearSnackbars(context);
       SnackBarController.showSnackBar(context, 'QR Code has been downloaded successfully.');
     } catch (e) {
-      print(e);
       if (!mounted) return;
       SnackBarController.clearSnackbars(context);
       SnackBarController.showSnackBar(context, 'We are unable to download your QR Code. Please try again later');
@@ -81,7 +79,7 @@ class _QRViewState extends State<QRView> {
               if (userData is StudentModel || userData is MakerModel) {
                 final encodedModel = jsonEncode(userData);
                 final encrypted = EncryptUtils.encrypt(userData.uid, encodedModel);
-                qrData = encrypted.base64;
+                qrData = '${userData.uid}${encrypted.base64}';
               }
 
               return Center(
