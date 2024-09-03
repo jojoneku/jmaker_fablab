@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "526773560865",
+    "project_id": "fablab-jmakers",
+    "storage_bucket": "fablab-jmakers.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:526773560865:android:74d7797e2078cfe7f26560",
+        "android_client_info": {
+          "package_name": "com.example.jmaker_fablab"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEyJVtVbkU9D2n6m9ONlktQeGd8Y3hHQU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

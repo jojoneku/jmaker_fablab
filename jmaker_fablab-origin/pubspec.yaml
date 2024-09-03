@@ -1,0 +1,78 @@
+name: jmaker_fablab
+description: "Attendance Management App for Fablab Bohol"
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.3.5+1
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.6
+  hive: ^2.2.3
+  hive_flutter:
+  mvc_pattern: ^8.0.0
+  animated_icon: ^0.0.9
+  ionicons: ^0.2.2
+  auto_route: ^8.1.3
+  firebase_core: ^2.30.1
+  firebase_auth: ^4.19.4
+  cloud_firestore: ^4.17.2
+  json_serializable: ^6.8.0
+  freezed: ^2.5.2
+  freezed_annotation: ^2.4.1
+  qr_flutter: ^4.1.0
+  dot_navigation_bar: null
+  salomon_bottom_bar: ^3.3.2
+  uicons: ^1.0.1
+  iconify_flutter: ^0.0.5
+  syncfusion_flutter_pdfviewer: ^25.1.42
+  encrypt: ^5.0.3
+  path_provider: ^2.1.3
+  connectivity_plus: ^6.0.3
+  url_launcher: ^6.2.6
+  video_cached_player: ^2.4.9+1
+  flutter_native_splash: ^2.4.0
+  intl: ^0.18.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  hive_generator: ^2.0.1
+  build_runner: ^2.4.9
+  flutter_lints: ^3.0.0
+  auto_route_generator: ^8.0.0
+  flutter_launcher_icons: "^0.13.1"
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/jmaker_symbol.png"
+  min_sdk_android: 21
+
+flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+     - assets/images/
+     - assets/pdf/
+     - assets/fonts/Nunito/
+  fonts:
+    - family: Nunito
+      fonts:
+        - asset: assets/fonts/Nunito/Nunito-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Nunito/Nunito-Light.ttf
+        - asset: assets/fonts/Nunito/Nunito-Regular.ttf
+        - asset: assets/fonts/Nunito/Nunito-SemiBold.ttf
+
+
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.dev/custom-fonts/#from-packages
