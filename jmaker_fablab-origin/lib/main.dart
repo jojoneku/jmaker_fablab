@@ -27,13 +27,20 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      theme: ThemeData(
-        fontFamily: 'Nunito',
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      routerConfig: _appRouter.config(),
-      debugShowCheckedModeBanner: false,
+    return Builder(
+      builder: (context) {
+        return MediaQuery(
+          data: MediaQuery.of(context).copyWith(textScaler: const TextScaler.linear(1.0)), // Fixed text scale
+          child: MaterialApp.router(
+            theme: ThemeData(
+              fontFamily: 'Nunito',
+              visualDensity: VisualDensity.adaptivePlatformDensity,
+            ),
+            routerConfig: _appRouter.config(),
+            debugShowCheckedModeBanner: false,
+          ),
+        );
+      },
     );
   }
 }

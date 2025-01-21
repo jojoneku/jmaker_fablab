@@ -7,6 +7,7 @@ import 'package:jmaker_fablab/Controller/auth_controller.dart';
 import 'package:jmaker_fablab/Controller/firestore_controller.dart';
 import 'package:jmaker_fablab/Controller/snackbar_controller.dart';
 import 'package:jmaker_fablab/Model/student_model.dart';
+import 'package:jmaker_fablab/Views/TermsOfUse.dart';
 import 'package:jmaker_fablab/styles/text_style.dart';
 import 'package:jmaker_fablab/styles/buttons.dart';
 import 'package:jmaker_fablab/styles/color.dart';
@@ -413,7 +414,6 @@ class _StudentAccountViewState extends State<StudentAccountView> {
                       },
                     ),
                   ),
-
                   Row(
                     children: [
                       Checkbox(
@@ -425,11 +425,46 @@ class _StudentAccountViewState extends State<StudentAccountView> {
                         },
                       ),
                       Expanded(
-                        child: Text(
-                          'By signing up, you agree to our Terms of Use which explains how we collect, use, and store your personal information.',
-                          style: CustomTextStyle.primaryBlack,
+                        child: RichText(
+                          textAlign: TextAlign.start,
+                          softWrap: true,
+                          textDirection: TextDirection.ltr,
+
+                          text: TextSpan(
+                            style: CustomTextStyle.primaryBlack, // Apply your default text style here
+                            children: [
+                              TextSpan(
+                                text: 'By signing up, you agree to our',
+                              ),
+                              WidgetSpan(
+                                alignment: PlaceholderAlignment.middle,
+                                baseline: TextBaseline.alphabetic,
+                                child: TextButton(
+                                  onPressed: () {
+                                    // Navigate to the Terms of Use page
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(builder: (context) => TermsOfUsePage()), // Replace with your TermsOfUsePage
+                                    );
+                                  },
+                                  child: Text(
+                                    textAlign: TextAlign.start,
+                                    'Terms of Use. ',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: Colors.blue, // Customize the link text color
+                                      decoration: TextDecoration.underline, // Optional underline for link effect
+                                    ),
+                                  ),
+                                ),
+                              ),
+
+                            ],
+                          ),
                         ),
                       ),
+
+
                     ],
                   ),
                 ],
