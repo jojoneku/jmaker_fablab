@@ -259,7 +259,7 @@ class _LoginViewState extends State<LoginView> {
                                     child: CircularProgressIndicator.adaptive(),
                                   )
                                 : Text(
-                                    'Log-In.',
+                                    'Log-In',
                                     style: CustomTextStyle.primaryBlack,
                                   ),
                           ),
